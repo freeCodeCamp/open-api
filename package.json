@@ -18,7 +18,9 @@
   "scripts": {
     "start": "gulp serve",
     "lint": "gulp lint-js",
-    "test": "gulp test"
+    "test": "gulp test",
+    "convert": "node scripts/convert-users",
+    "inspect": "node scripts/detect-cheaters"
   },
   "dependencies": {
     "babel-cli": "^6.3.17",
