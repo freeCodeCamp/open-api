@@ -1,11 +1,12 @@
 ![FreeCodeCamp](https://s3.amazonaws.com/freecodecamp/freecodecamp_logo.svg)
-# open-data Project
+This open-api project is a [FreeCodeCamp](http://www.freecodecamp.com) spin-off. Join FreeCodeCamp to learn to code and help nonprofits.
 
- Free Code Camp's open data initiative
+# open-api Project
 
 ## About
 
-This open-data project is a [FreeCodeCamp](http://www.freecodecamp.com) spin-off. Join FreeCodeCamp to learn to code and help nonprofits.
+Free Code Camp's open API initiative is an implementation of the FreeCodeCamp's open-data policy. The open API exposes user performance and some more details on Free Code Camp users. Third parties are encouraged to develop tools to present FCC user data in a creative way. 
+
 
 ## Getting Started
 
