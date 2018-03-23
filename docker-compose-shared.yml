@@ -1,0 +1,20 @@
+version: "2"
+
+networks: # Do not create but expect network to be there
+    freecodecamp_shared:
+        external: true 
+
+services:
+    open-api:
+        environment:
+            - MONGOHQ_URL=mongodb://db:27017/freecodecamp
+        volumes:
+            - .:/fcc-openapi
+        working_dir: /fcc-openapi
+        command:
+            - node 
+            - src/app.js
+        ports:
+            - "8080:8080"
+        networks:
+            - freecodecamp_shared # Should be created by freeCodeCamp main site
