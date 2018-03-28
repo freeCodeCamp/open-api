@@ -16,6 +16,7 @@
     "node": ">= 0.12.0"
   },
   "scripts": {
+    "commitmsg": "validate-commit-msg",
     "start": "gulp serve",
     "lint": "gulp lint-js",
     "test": "gulp test",
@@ -39,15 +40,17 @@
     "gulp-eslint": "^2.0.0",
     "gulp-nodemon": "^2.0.3",
     "gulp-util": "^3.0.6",
+    "husky": "^0.14.3",
     "mongoose": "^4.4.8",
     "path": "^0.12.7"
   },
   "devDependencies": {
     "browser-sync": "^2.9.12",
-    "jsonlint": "^1.6.2",
     "gulp-tape": "0.0.7",
+    "jsonlint": "^1.6.2",
+    "supertest": "*",
     "tap-spec": "^4.1.1",
     "tape": "^4.2.2",
-    "supertest": "*"
+    "validate-commit-msg": "^2.14.0"
   }
 }
