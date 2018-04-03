@@ -2,7 +2,7 @@ version: "2"
 
 services:
     open-api:
-        image: node:8.9.0
+        image: node:8.10
         volumes:
             - .:/fcc-openapi
         working_dir: /fcc-openapi
