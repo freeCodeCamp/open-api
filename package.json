@@ -1,34 +1,49 @@
 {
   "name": "open-api",
-  "version": "0.0.1",
   "description": "freeCodeCamp's open-api Intiative",
-  "main": "index.js",
-  "scripts": {
-    "test": "snyk test",
-    "commitmsg": "commitlint -e",
-    "commit": "git-cz",
-    "prepare-production": "snyk protect"
-  },
+  "license": "BSD-3-Clause",
+  "author": "freeCodeCamp <team@freecodecamp.org> (https://freecodecamp.org)",
+  "homepage": "https://github.com/freeCodeCamp/open-api#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/freeCodeCamp/open-api.git"
   },
-  "keywords": [
-    "open-api"
-  ],
-  "author": "freeCodeCamp <team@freecodecamp.org> (https://freecodecamp.org)",
-  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/freeCodeCamp/open-api/issues"
   },
-  "homepage": "https://github.com/freeCodeCamp/open-api#readme",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "precommit": "lint-staged",
+    "commit": "git-cz",
+    "commitmsg": "commitlint -e",
+    "prepare-production": "snyk protect",
+    "test": "snyk test"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "commitizen.config.js"
+    }
+  },
+  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^6.1.3",
     "@commitlint/config-conventional": "^6.1.3",
     "@commitlint/travis-cli": "^6.1.3",
     "commitizen": "^2.9.6",
+    "cz-customizable": "^5.2.0",
     "husky": "^0.14.3",
+    "lint-staged": "^7.0.3",
+    "prettier": "1.11.1",
+    "prettier-package-json": "^1.5.1",
     "snyk": "^1.70.3"
   },
-  "dependencies": {}
+  "keywords": ["open-api"],
+  "lint-staged": {
+    "*.{js,json,css}": ["prettier --write", "git add"],
+    "package.json": ["prettier-package-json --write", "git add"]
+  }
 }
