@@ -1,0 +1,46 @@
+service: serverless-graphql-apollo
+
+frameworkVersion: ">=1.21.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-east-1
+  environment:
+    MONGODB_URL: ${env:MONGODB_URL}
+    GRAPHQL_ENDPOINT_URL: ${env:GRAPHQL_ENDPOINT_URL}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:*
+      Resource: "*"
+
+plugins:
+  - serverless-webpack
+  - serverless-offline-scheduler
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    port: 4000
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+functions:
+  graphql:
+    handler: handler.graphqlHandler
+    events:
+    - http:
+        path: graphql
+        method: post
+        cors: true
+
+  api:
+    handler: handler.apiHandler
+    events:
+    - http:
+        path: api
+        method: get
+        cors: true
