@@ -11,20 +11,79 @@
 
 freeCodeCamp's open API initiative is an implementation of the freeCodeCamp's open-data policy. This project aims to open access to developers for building applications around the freeCodeCamp's eco-system and its open data sets.
 
-## Getting Started
+## Setting up of a development environment
+### Install prerequisites
+Install serverless
 
-Start a self contained service, this will spin up a MongoDB server
-````
-docker-compose -f docker-compose.yml -f docker-compose-isolated.yml up
-````
-
-Start service, attaching to a shared network created by 
-running the main website in sharing mode. This assumes you:
-* Have a checkout of https://github.com/freeCodeCamp/freeCodeCamp
-* Are running the site with `docker-compose -f docker-compose.yml -f docker-compose-shared.yml up`
-
+```sh
+npm install serverless -g
 ```
- docker-compose -f docker-compose.yml -f docker-compose-shared.yml up
+
+Install dependencies
+```sh
+npm install               # Install dependencies
+docker pull lambci/lambda # Pull Docker image used to simulate an AWS Lambda container
+```
+
+### Configuring your environment
+Exporting environment values manually or put them in an env file
+```sh
+export MONGODB_URL='mongodb://foo:bar@baz:41019/quuz'
+export GRAPHQL_ENDPOINT_URL='/graphql'
+```
+
+### Running the service
+Start running locally using:
+
+```sh
+npm start
+
+> open-api@0.0.1 start /Users/ojongerius/repos/fcc-open-api
+> serverless offline start --skipCacheInvalidation
+
+Serverless: Bundling with Webpack...
+Time: 891ms
+Built at: 2018-4-18 11:41:34
+         Asset      Size   Chunks             Chunk Names
+    handler.js  18.2 KiB  handler  [emitted]  handler
+handler.js.map  22.1 KiB  handler  [emitted]  handler
+Entrypoint handler = handler.js handler.js.map
+[./db.js] 593 bytes {handler} [built]
+[./handler.js] 1.98 KiB {handler} [built]
+[./model/user.js] 4.97 KiB {handler} [built]
+[./mongo/user.js] 986 bytes {handler} [built]
+[./resolvers/user.js] 210 bytes {handler} [built]
+[./types/user.js] 388 bytes {handler} [built]
+[apollo-server-lambda] external "apollo-server-lambda" 42 bytes {handler} [built]
+[bluebird] external "bluebird" 42 bytes {handler} [built]
+[fs] external "fs" 42 bytes {handler} [built]
+[graphql-playground-middleware-lambda] external "graphql-playground-middleware-lambda" 42 bytes {handler} [built]
+[graphql-tools] external "graphql-tools" 42 bytes {handler} [built]
+[merge-graphql-schemas] external "merge-graphql-schemas" 42 bytes {handler} [built]
+[moment] external "moment" 42 bytes {handler} [built]
+[mongoose] external "mongoose" 42 bytes {handler} [built]
+[validator] external "validator" 42 bytes {handler} [built]
+Serverless: Watching for changes...
+Serverless: Starting Offline: dev/us-east-1.
+
+Serverless: Routes for graphql:
+Serverless: POST /graphql
+
+Serverless: Routes for api:
+Serverless: GET /api
+
+Serverless: Offline listening on http://localhost:4000
+```
+
+### Deployment
+Deployment are normally done by CI. If you want to do a manually deployment:
+
+Configure your AWS credentials, see https://serverless.com/framework/docs/providers/aws/guide/credentials
+
+Assert that the stages configured in `serverless.yml` in line with what you'd like to deploy to, and run:
+
+```sh
+serverless --stage=YOUR_STAGE_HERE deploy 
 ```
 
 ### Getting an API key
