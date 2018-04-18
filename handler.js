@@ -11,7 +11,7 @@ const graphqlSchema = makeExecutableSchema({
 });
 
 // Database connection logic lives outside of the handler for performance reasons
-const connectToDatabase = require('./db');
+const connectToDatabase = require('./dataLayer');
 
 const server = require('apollo-server-lambda');
 
