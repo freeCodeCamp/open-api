@@ -4,8 +4,17 @@ language: node_js
 node_js:
   - "lts/*"
 cache:
-directories:
-  - "node_modules"
+  directories:
+    - "node_modules"
+
+env:
+  global:
+    - AWS_REGION=us-east-1
+    - SLS_DEBUG=true
+
+before_install:
+  - npm install -g serverless
 
 script:
   - commitlint-travis
+  - [ "${TRAVIS_PULL_REQUEST}" = "false" ] && ./scripts/deploy.sh
