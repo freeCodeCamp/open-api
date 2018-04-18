@@ -1,15 +1,12 @@
 import { graphqlLambda, graphiqlLambda } from 'apollo-server-lambda';
 import lambdaPlayground from 'graphql-playground-middleware-lambda';
 import { makeExecutableSchema } from 'graphql-tools';
-import { mergeResolvers, mergeTypes } from 'merge-graphql-schemas';
-import { userType } from './types/user';
-import { userResolver } from './resolvers/user';
+import typeDefs from './graphql/typeDefs';
+import resolvers from './graphql/resolvers';
 
-const types = mergeTypes([userType]);
-const solvers = mergeResolvers([userResolver]);
 const graphqlSchema = makeExecutableSchema({
-  typeDefs: types,
-  resolvers: solvers,
+  typeDefs,
+  resolvers,
   logger: console
 });
 

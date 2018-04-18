@@ -1,6 +1,6 @@
-import * as dbUsers from '../mongo/user';
+import * as dbUsers from '../../mongo/user';
 
-export const userResolver = {
+export const userResolvers = {
   Query: {
     users: (_, args) => dbUsers.getUsers(args)
   },
