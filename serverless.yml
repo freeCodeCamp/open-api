@@ -8,8 +8,8 @@ provider:
   stage: dev
   region: us-east-1
   environment:
-    MONGODB_URL: ${env:MONGODB_URL}
-    GRAPHQL_ENDPOINT_URL: ${env:GRAPHQL_ENDPOINT_URL}
+    MONGODB_URL: ${file(./config/secrets.js):getSecret.MONGODB_URL}
+    GRAPHQL_ENDPOINT_URL: ${file(./config/secrets.js):getSecret.GRAPHQL_ENDPOINT_URL}
   iamRoleStatements:
     - Effect: Allow
       Action:

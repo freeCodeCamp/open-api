@@ -14,11 +14,6 @@ freeCodeCamp's open API initiative is an implementation of the freeCodeCamp's op
 
 ## Setting up of a development environment
 ### Install prerequisites
-Install serverless
-
-```sh
-npm install serverless -g
-```
 
 Install dependencies
 ```sh
@@ -27,10 +22,9 @@ docker pull lambci/lambda # Pull Docker image used to simulate an AWS Lambda con
 ```
 
 ### Configuring your environment
-Exporting environment values manually or put them in an env file
+
 ```sh
-export MONGODB_URL='mongodb://foo:bar@baz:41019/quuz'
-export GRAPHQL_ENDPOINT_URL='/graphql'
+cp sample.env .env
 ```
 
 ### Running the service
@@ -77,14 +71,24 @@ Serverless: Offline listening on http://localhost:4000
 ```
 
 ### Deployment
-Deployment are normally done by CI. If you want to do a manually deployment:
+Deployment is normally done by CI.
+
+### Manual Deployment
+
+If you want to do a manual deployment:
 
 Configure your AWS credentials, see https://serverless.com/framework/docs/providers/aws/guide/credentials
+
+Ensure that you have the `serverless` package install globally
+
+```sh
+npm i -g serverless
+```
 
 Assert that the stages configured in `serverless.yml` in line with what you'd like to deploy to, and run:
 
 ```sh
-serverless --stage=YOUR_STAGE_HERE deploy 
+serverless --stage=YOUR_STAGE_HERE deploy
 ```
 
 ### Getting an API key
