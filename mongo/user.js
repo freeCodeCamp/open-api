@@ -1,12 +1,12 @@
-const validator = require("validator");
-const UserModel = require("../model/user.js");
-const moment = require("moment");
-const fs = require("fs");
+const validator = require('validator');
+const UserModel = require('../model/user.js');
+const moment = require('moment');
+const fs = require('fs');
 
 const createErrorResponse = (statusCode, message) => ({
   statusCode: statusCode || 501,
-  headers: { "Content-Type": "text-plain" },
-  body: message || "Incorrect id"
+  headers: { 'Content-Type': 'text-plain' },
+  body: message || 'Incorrect id'
 });
 
 export function getUsers(args) {
@@ -34,7 +34,7 @@ export function createUser(args) {
     const newUser = userModel.save();
 
     if (!newUser) {
-      reject("Failed to add user");
+      reject('Failed to add user');
     }
 
     resolve(newUser);

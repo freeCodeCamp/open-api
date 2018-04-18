@@ -1,9 +1,9 @@
-import { graphqlLambda, graphiqlLambda } from "apollo-server-lambda";
-import lambdaPlayground from "graphql-playground-middleware-lambda";
-import { makeExecutableSchema } from "graphql-tools";
-import { mergeResolvers, mergeTypes } from "merge-graphql-schemas";
-import { userType } from "./types/user";
-import { userResolver } from "./resolvers/user";
+import { graphqlLambda, graphiqlLambda } from 'apollo-server-lambda';
+import lambdaPlayground from 'graphql-playground-middleware-lambda';
+import { makeExecutableSchema } from 'graphql-tools';
+import { mergeResolvers, mergeTypes } from 'merge-graphql-schemas';
+import { userType } from './types/user';
+import { userResolver } from './resolvers/user';
 
 const types = mergeTypes([userType]);
 const solvers = mergeResolvers([userResolver]);
@@ -14,9 +14,9 @@ const graphqlSchema = makeExecutableSchema({
 });
 
 // Database connection logic lives outside of the handler for performance reasons
-const connectToDatabase = require("./db");
+const connectToDatabase = require('./db');
 
-const server = require("apollo-server-lambda");
+const server = require('apollo-server-lambda');
 
 exports.graphqlHandler = function graphqlHandler(event, context, callback) {
   /* Cause Lambda to freeze the process and save state data after
@@ -31,9 +31,9 @@ exports.graphqlHandler = function graphqlHandler(event, context, callback) {
       output.headers = {};
     }
     // eslint-disable-next-line no-param-reassign
-    output.headers["Access-Control-Allow-Origin"] = "*";
-    output.headers["Access-Control-Allow-Credentials"] = true;
-    output.headers["Content-Type"] = "application/json";
+    output.headers['Access-Control-Allow-Origin'] = '*';
+    output.headers['Access-Control-Allow-Credentials'] = true;
+    output.headers['Content-Type'] = 'application/json';
 
     callback(error, output);
   }
@@ -45,7 +45,7 @@ exports.graphqlHandler = function graphqlHandler(event, context, callback) {
       return handler(event, context, callbackFilter);
     })
     .catch(err => {
-      console.log("MongoDB connection error: ", err);
+      console.log('MongoDB connection error: ', err);
       // TODO: return 500?
       process.exit();
     });
@@ -54,5 +54,5 @@ exports.graphqlHandler = function graphqlHandler(event, context, callback) {
 exports.apiHandler = lambdaPlayground({
   endpoint: process.env.GRAPHQL_ENDPOINT_URL
     ? process.env.GRAPHQL_ENDPOINT_URL
-    : "/production/graphql"
+    : '/production/graphql'
 });
