@@ -17,4 +17,4 @@ before_install:
 
 script:
   - commitlint-travis
-  - [ "${TRAVIS_PULL_REQUEST}" = "false" ] && ./scripts/deploy.sh
+  - 'if [ "${TRAVIS_PULL_REQUEST}" = "false" ] ; then ./scripts/deploy.sh ; fi'
