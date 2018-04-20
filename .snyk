@@ -6,4 +6,8 @@ ignore:
     - '*':
         reason: 'Low sev, no fix available'
         expires: 2018-05-20T02:45:20.389Z
+  'npm:https-proxy-agent:20180402':
+    - '*':
+        reason: no-patch
+        expires: 2018-05-20T00:00:00.000Z
 patch: {}
