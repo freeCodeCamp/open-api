@@ -5,6 +5,6 @@ export const userResolvers = {
     users: (_, args) => dbUsers.getUsers(args)
   },
   Mutation: {
-    createUser: (_, args) => dbUsers.createUser(args)
+    createUser: (_, { email }) => dbUsers.createUser(email)
   }
 };
