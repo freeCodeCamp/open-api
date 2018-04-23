@@ -1,15 +1,16 @@
-const validator = require('validator');
-const UserModel = require('../model/user.js');
-const moment = require('moment');
-const fs = require('fs');
+import validator from 'validator';
+import UserModel from '../model/user.js';
+import debug from 'debug';
 
 import { asyncErrorHandler } from '../../utils';
+
+const log = debug('fcc:dataLayer:mongo:user');
 
 function doesExist(Model, options) {
   return Model.find(options).exec();
 }
 
-export function getUsers(args) {
+export function getUsers(_, args = {}) {
   return new Promise((resolve, reject) => {
     UserModel.find(args)
       .then(users => {

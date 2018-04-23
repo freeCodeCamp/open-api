@@ -1,8 +1,12 @@
 import { graphqlLambda, graphiqlLambda } from 'apollo-server-lambda';
 import lambdaPlayground from 'graphql-playground-middleware-lambda';
 import { makeExecutableSchema } from 'graphql-tools';
+import debug from 'debug';
+
 import typeDefs from './graphql/typeDefs';
-import resolvers from './graphql/resolvers';
+import { default as resolvers, attachDirectives } from './graphql/resolvers';
+
+const log = debug('fcc:handler');
 
 export const graphqlSchema = makeExecutableSchema({
   typeDefs,
@@ -10,17 +14,19 @@ export const graphqlSchema = makeExecutableSchema({
   logger: console
 });
 
+attachDirectives(graphqlSchema);
+
 // Database connection logic lives outside of the handler for performance reasons
 const connectToDatabase = require('./dataLayer');
 
 const server = require('apollo-server-lambda');
 
-exports.graphqlHandler = function graphqlHandler(event, context, callback) {
+export async function graphqlHandler(event, context, callback) {
   /* Cause Lambda to freeze the process and save state data after
-    the callback is called the effect is that new handler invocations
-    will be able to re-use the database connection.
-    See https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html
-    and https://www.mongodb.com/blog/post/optimizing-aws-lambda-performance-with-mongodb-atlas-and-nodejs */
+  the callback is called the effect is that new handler invocations
+  will be able to re-use the database connection.
+  See https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html
+  and https://www.mongodb.com/blog/post/optimizing-aws-lambda-performance-with-mongodb-atlas-and-nodejs */
   context.callbackWaitsForEmptyEventLoop = false;
 
   function callbackFilter(error, output) {
@@ -35,20 +41,32 @@ exports.graphqlHandler = function graphqlHandler(event, context, callback) {
     callback(error, output);
   }
 
-  const handler = server.graphqlLambda({ schema: graphqlSchema });
+  const handler = server.graphqlLambda((event, context) => {
+    const { headers } = event;
+    const { functionName } = context;
 
-  connectToDatabase()
-    .then(() => {
-      return handler(event, context, callbackFilter);
-    })
-    .catch(err => {
-      console.log('MongoDB connection error: ', err);
-      // TODO: return 500?
-      process.exit();
-    });
-};
+    return {
+      schema: graphqlSchema,
+      context: {
+        headers,
+        functionName,
+        event,
+        context
+      }
+    };
+  });
 
-exports.apiHandler = lambdaPlayground({
+  try {
+    await connectToDatabase();
+  } catch (err) {
+    log('MongoDB connection error: ', err);
+    // TODO: return 500?
+    process.exit();
+  }
+  return handler(event, context, callbackFilter);
+}
+
+export const apiHandler = lambdaPlayground({
   endpoint: process.env.GRAPHQL_ENDPOINT_URL
     ? process.env.GRAPHQL_ENDPOINT_URL
     : '/production/graphql'

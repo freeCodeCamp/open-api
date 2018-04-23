@@ -1,8 +1,8 @@
-import * as dbUsers from '../../dataLayer/mongo/user';
+import { createUser, getUsers } from '../../dataLayer/mongo/user';
 
 export const userResolvers = {
   Query: {
-    users: (_, args) => dbUsers.getUsers(args)
+    users: getUsers
   },
   Mutation: {
     createUser: (_, { email }) => dbUsers.createUser(email)

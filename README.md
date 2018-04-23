@@ -31,7 +31,10 @@ docker pull lambci/lambda # Pull Docker image used to simulate an AWS Lambda con
 
 ```sh
 cp sample.env .env
+cp public.pem.sample public.pem
 ```
+
+Add your public key to `public.pem`, instructions can be found in `public.pem`.
 
 ### Running the service
 Start running locally using:
