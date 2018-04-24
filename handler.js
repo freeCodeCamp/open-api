@@ -4,17 +4,16 @@ import { makeExecutableSchema } from 'graphql-tools';
 import debug from 'debug';
 
 import typeDefs from './graphql/typeDefs';
-import { default as resolvers, attachDirectives } from './graphql/resolvers';
+import { default as resolvers, directiveResolvers } from './graphql/resolvers';
 
 const log = debug('fcc:handler');
 
 export const graphqlSchema = makeExecutableSchema({
   typeDefs,
   resolvers,
+  directiveResolvers,
   logger: console
 });
-
-attachDirectives(graphqlSchema);
 
 // Database connection logic lives outside of the handler for performance reasons
 const connectToDatabase = require('./dataLayer');
