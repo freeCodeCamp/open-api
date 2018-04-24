@@ -1,8 +1,16 @@
+const path = require('path');
 const slsw = require('serverless-webpack');
 const nodeExternals = require('webpack-node-externals');
 
+const include = './_webpack/include.js';
+const entries = {};
+
+Object.keys(slsw.lib.entries).forEach(
+  key => (entries[key] = [include, slsw.lib.entries[key]])
+);
+
 module.exports = {
-  entry: slsw.lib.entries,
+  entry: entries,
   target: 'node',
   // Generate sourcemaps for proper error messages
   devtool: 'source-map',
@@ -28,5 +36,10 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
+  },
+  output: {
+    path: path.join(__dirname, '.webpack'),
+    filename: '[name].js',
+    sourceMapFilename: '[file].map'
   }
 };

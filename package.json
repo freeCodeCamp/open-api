@@ -64,7 +64,8 @@
     "lint-staged": "^7.0.4",
     "prettier": "^1.11.1",
     "prettier-package-json": "^1.5.1",
-    "snyk": "^1.71.0"
+    "snyk": "^1.71.0",
+    "source-map-support": "^0.5.4"
   },
   "keywords": ["open-api"],
   "lint-staged": {
