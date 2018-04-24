@@ -16,8 +16,14 @@ freeCodeCamp's open API initiative is an implementation of the freeCodeCamp's op
 ### Install prerequisites
 
 Install dependencies
+
+Prerequisites:
+1. [Yarn](https://yarnpkg.com/en/docs/install)
+2. [Node.js](https://nodejs.org/en/)
+3. [Docker](https://docs.docker.com/install/)
+
 ```sh
-npm install               # Install dependencies
+yarn                      # Install dependencies
 docker pull lambci/lambda # Pull Docker image used to simulate an AWS Lambda container
 ```
 
@@ -31,7 +37,7 @@ cp sample.env .env
 Start running locally using:
 
 ```sh
-npm start
+yarn start
 
 > open-api@0.0.1 start /Users/ojongerius/repos/fcc-open-api
 > serverless offline start --skipCacheInvalidation
@@ -77,7 +83,7 @@ Deployment is normally done by CI.
 
 If you want to do a manual deployment:
 
-Configure your AWS credentials, see https://serverless.com/framework/docs/providers/aws/guide/credentials
+Configure your AWS credentials, see <https://serverless.com/framework/docs/providers/aws/guide/credentials>
 
 Ensure that you have the `serverless` package install globally
 
