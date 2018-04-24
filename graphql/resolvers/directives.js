@@ -19,12 +19,14 @@ function verifyWebToken(ctx) {
       message: 'You must supply a JSON Web Token for authorization!'
     });
   }
+  let decoded = null;
+  let error = null;
   try {
-    return jwt.verify(token.replace('Bearer ', ''), cert, {
-      ignoreExpiration: true
-    });
+    decoded = jwt.verify(token.replace('Bearer ', ''), cert);
   } catch (err) {
-    return false;
+    error = err;
+  } finally {
+    return { decoded, error, isAuth: !!decoded };
   }
 }
 
@@ -40,16 +42,16 @@ function verifyWebToken(ctx) {
 */
 export const directiveResolvers = {
   isAuthenticatedOnField: (next, source, args, ctx) => {
-    const isAuth = verifyWebToken(ctx);
+    const { isAuth } = verifyWebToken(ctx);
     return asyncErrorHandler(next().then(result => (isAuth ? result : null)));
   },
   isAuthenticatedOnQuery: (next, source, args, ctx) => {
-    const isAuth = verifyWebToken(ctx);
+    const { isAuth, error } = verifyWebToken(ctx);
     if (isAuth) {
       return asyncErrorHandler(next());
     }
     throw new AuthorizationError({
-      message: `You are not authorized. The required permission was not found.`
+      message: `You are not authorized, ${error.message}`
     });
   }
 };
