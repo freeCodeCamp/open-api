@@ -17,7 +17,7 @@ freeCodeCamp's open API initiative is an implementation of the freeCodeCamp's op
 
 Install dependencies
 ```sh
-npm install               # Install dependencies
+yarn install              # Install dependencies
 docker pull lambci/lambda # Pull Docker image used to simulate an AWS Lambda container
 ```
 
@@ -31,33 +31,11 @@ cp sample.env .env
 Start running locally using:
 
 ```sh
-npm start
+yarn start
 
-> open-api@0.0.1 start /Users/ojongerius/repos/fcc-open-api
-> serverless offline start --skipCacheInvalidation
-
-Serverless: Bundling with Webpack...
-Time: 891ms
-Built at: 2018-4-18 11:41:34
-         Asset      Size   Chunks             Chunk Names
-    handler.js  18.2 KiB  handler  [emitted]  handler
-handler.js.map  22.1 KiB  handler  [emitted]  handler
-Entrypoint handler = handler.js handler.js.map
-[./db.js] 593 bytes {handler} [built]
-[./handler.js] 1.98 KiB {handler} [built]
-[./model/user.js] 4.97 KiB {handler} [built]
-[./mongo/user.js] 986 bytes {handler} [built]
-[./resolvers/user.js] 210 bytes {handler} [built]
-[./types/user.js] 388 bytes {handler} [built]
-[apollo-server-lambda] external "apollo-server-lambda" 42 bytes {handler} [built]
-[bluebird] external "bluebird" 42 bytes {handler} [built]
-[fs] external "fs" 42 bytes {handler} [built]
-[graphql-playground-middleware-lambda] external "graphql-playground-middleware-lambda" 42 bytes {handler} [built]
-[graphql-tools] external "graphql-tools" 42 bytes {handler} [built]
-[merge-graphql-schemas] external "merge-graphql-schemas" 42 bytes {handler} [built]
-[moment] external "moment" 42 bytes {handler} [built]
-[mongoose] external "mongoose" 42 bytes {handler} [built]
-[validator] external "validator" 42 bytes {handler} [built]
+#
+#   A whole bunch of webpack stuff
+#
 Serverless: Watching for changes...
 Serverless: Starting Offline: dev/us-east-1.
 
@@ -82,7 +60,7 @@ Configure your AWS credentials, see https://serverless.com/framework/docs/provid
 Ensure that you have the `serverless` package install globally
 
 ```sh
-npm i -g serverless
+yarn add -g serverless
 ```
 
 Assert that the stages configured in `serverless.yml` in line with what you'd like to deploy to, and run:

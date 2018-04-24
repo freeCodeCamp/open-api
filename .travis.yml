@@ -13,8 +13,9 @@ env:
     - SLS_DEBUG=true
 
 before_install:
-  - npm install -g serverless
+  - npm i -g yarn serverless
 
 script:
+  - yarn test
   - commitlint-travis
   - 'if [ "${TRAVIS_PULL_REQUEST}" = "false" ] ; then ./scripts/deploy.sh ; fi'
