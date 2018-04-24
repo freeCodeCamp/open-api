@@ -9,8 +9,13 @@ import { AuthorizationError } from '../errors';
 import { asyncErrorHandler } from '../../utils';
 
 const log = debug('fcc:resolvers:directives');
-const certPath = process.cwd() + '/public.pem';
-const cert = fs.readFileSync(certPath);
+const {
+  NODE_ENV,
+  STAGING_JWT_CERT: stagingCert,
+  PRODUCTION_JWT_CERT: productionCert
+} = process.env;
+
+const cert = NODE_ENV !== 'production' ? stagingCert : productionCert;
 
 function verifyWebToken(ctx) {
   const token = ctx.headers.authorization;
