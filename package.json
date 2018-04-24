@@ -19,7 +19,7 @@
     "commitmsg": "commitlint -e",
     "deploy-dev": "serverless --stage=dev deploy",
     "deploy-prod": "serverless --stage=prod deploy",
-    "format": "prettier --write es5 './**/*.js' && npm run lint",
+    "format": "prettier --write es5 './**/*.js' && yarn lint",
     "lint": "eslint ./**/*.js --fix",
     "prepare-production": "snyk protect",
     "start":
