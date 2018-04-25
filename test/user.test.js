@@ -1,14 +1,6 @@
+import { graphqlSchema } from '../handler';
 const mongoose = require('mongoose');
 const { graphql } = require('graphql');
-const { makeExecutableSchema } = require('graphql-tools');
-import typeDefs from '../graphql/typeDefs';
-import resolvers from '../graphql/resolvers';
-const graphqlSchema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-  logger: console
-});
-
 const UserModel = require('../dataLayer/model/user.js');
 
 let connection;
