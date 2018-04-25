@@ -1,16 +1,18 @@
 import { graphqlSchema } from '../handler';
+
 const mongoose = require('mongoose');
 const { graphql } = require('graphql');
 const UserModel = require('../dataLayer/model/user.js');
 
-let connection;
-let db;
-
+/* eslint-disable no-undef */
 beforeAll(async () => {
-  connection = await mongoose.connect(global.__MONGO_URI__);
+  /* eslint-enable no-undef */
+  await mongoose.connect(global.__MONGO_URI__);
 });
 
+/* eslint-disable no-undef */
 afterAll(async () => {
+  /* eslint-enable no-undef */
   await mongoose.disconnect();
 });
 
@@ -20,9 +22,9 @@ it('should return a user after one has been created', async () => {
     email: 'user@example.com'
   });
 
-  const newUser = await user.save();
+  await user.save();
 
-  //language=GraphQL
+  // language=GraphQL
   const query = `
       query {
           users {
@@ -36,5 +38,7 @@ it('should return a user after one has been created', async () => {
   const result = await graphql(graphqlSchema, query, rootValue);
   const { data } = result;
 
+  /* eslint-disable no-undef */
   expect(data.users[0].name).toBe(user.name);
+  /* eslint-enable no-undef */
 });
