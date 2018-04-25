@@ -6,5 +6,7 @@ import 'source-map-support/register';
 // can swallow error messages.
 process.on('unhandledRejection', e => {
   console.error(e.stack);
+  /* eslint-disable no-process-exit */
   process.exit(1);
+  /* eslint-enable no-process-exit */
 });
