@@ -6,6 +6,7 @@ node_js:
 cache:
   directories:
     - "node_modules"
+    - $HOME/.mongodb-binaries # For mongodb-memory-server
 
 env:
   global:
@@ -14,6 +15,7 @@ env:
 
 before_install:
   - npm install -g serverless
+  - npm run test-ci # Running inband is recommended for CI see https://github.com/facebook/jest/issues/3765
 
 script:
   - commitlint-travis
