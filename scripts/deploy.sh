@@ -29,5 +29,4 @@ fi
 
 
 echo "Deploying from branch $BRANCH to stage $STAGE"
-yarn install --production --ignore-scripts --prefer-offline
 sls deploy --stage $STAGE --region $AWS_REGION
