@@ -26,7 +26,7 @@
     "start":
       "nodemon ./node_modules/serverless/bin/serverless offline start --skipCacheInvalidation",
     "test": "jest --runInBand",
-    "test-ci": "jest --runInBand"
+    "test-ci": "node_modules/.bin/jest --runInBand"
   },
   "config": {
     "commitizen": {
