@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-BRANCH=${TRAVIS_BRANCH:-$(git rev-parse --abbrev-ref HEAD)} 
+BRANCH=${TRAVIS_BRANCH:-$(git rev-parse --abbrev-ref HEAD)}
 
 if [[ $BRANCH == 'master' ]]; then
   STAGE="prod"
@@ -29,5 +29,5 @@ fi
 
 
 echo "Deploying from branch $BRANCH to stage $STAGE"
-npm prune --production  #remove devDependencies
+yarn install --production --ignore-scripts --prefer-offline
 sls deploy --stage $STAGE --region $AWS_REGION
