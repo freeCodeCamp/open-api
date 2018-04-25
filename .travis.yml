@@ -16,5 +16,6 @@ before_install:
   - npm install -g serverless
 
 script:
+  - yarn lint
   - commitlint-travis
   - 'if [ "${TRAVIS_PULL_REQUEST}" = "false" ] ; then ./scripts/deploy.sh ; fi'
