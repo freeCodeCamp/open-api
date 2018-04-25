@@ -5,6 +5,9 @@ node_js:
   - "lts/*"
 cache:
   yarn: true
+  directories:
+    - "node_modules"
+    - $HOME/.mongodb-binaries # For mongodb-memory-server
 
 env:
   global:
@@ -18,5 +21,6 @@ before_install:
 
 script:
   - yarn lint
+  - yarn test-ci # Running inband is recommended for CI see https://github.com/facebook/jest/issues/3765
   - commitlint-travis
   - 'if [ "${TRAVIS_PULL_REQUEST}" = "false" ] ; then ./scripts/deploy.sh ; fi'
