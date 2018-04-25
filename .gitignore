@@ -54,10 +54,6 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# certificates
-
-*.pem
-
 # dotenv environment variables file
 .env
 

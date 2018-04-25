@@ -9,13 +9,7 @@ import { AuthorizationError } from '../errors';
 import { asyncErrorHandler } from '../../utils';
 
 const log = debug('fcc:resolvers:directives');
-const {
-  NODE_ENV,
-  STAGING_JWT_CERT: stagingCert,
-  PRODUCTION_JWT_CERT: productionCert
-} = process.env;
-
-const cert = NODE_ENV !== 'production' ? stagingCert : productionCert;
+const { JWT_CERT } = process.env;
 
 function verifyWebToken(ctx) {
   const token = ctx.headers.authorization;
@@ -27,7 +21,7 @@ function verifyWebToken(ctx) {
   let decoded = null;
   let error = null;
   try {
-    decoded = jwt.verify(token.replace('Bearer ', ''), cert);
+    decoded = jwt.verify(token.replace('Bearer ', ''), JWT_CERT);
   } catch (err) {
     error = err;
   } finally {
@@ -38,7 +32,7 @@ function verifyWebToken(ctx) {
 /*
   Interface: {
     Directive: (
-      next: QueryResolver <Promise>
+      next: Resolver <Promise>
       source: any <From Data Source>, Example <User Object>
       args: any, passed to directive
       ctx: Lambda context <Object>
