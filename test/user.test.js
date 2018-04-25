@@ -32,7 +32,7 @@ it('should return a user after one has been created', async () => {
 
   //language=GraphQL
   const query = `
-      query {
+      query { 
           users {
               name
               email
