@@ -23,8 +23,7 @@
     "lint": "eslint ./**/*.js --fix",
     "prepare-production": "snyk protect",
     "snyk-test": "snyk test",
-    "start":
-      "nodemon ./node_modules/serverless/bin/serverless offline start --skipCacheInvalidation",
+    "start": "gulp",
     "test": "jest --runInBand",
     "test-ci": "node_modules/.bin/jest --runInBand"
   },
@@ -70,6 +69,8 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-prefer-object-spread": "^1.2.1",
     "eslint-plugin-react": "^7.7.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
     "jest-cli": "^22.4.3",
