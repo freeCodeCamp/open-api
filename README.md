@@ -88,7 +88,7 @@ Configure your AWS credentials, see <https://serverless.com/framework/docs/provi
 Ensure that you have the `serverless` package install globally
 
 ```sh
-npm i -g serverless
+yarn global add serverless
 ```
 
 Assert that the stages configured in `serverless.yml` in line with what you'd like to deploy to, and run:
