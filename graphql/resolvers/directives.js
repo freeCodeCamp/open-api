@@ -1,33 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { forEachField } from 'graphql-tools';
-import { getArgumentValues } from 'graphql/execution/values';
-import jwt from 'jsonwebtoken';
-import debug from 'debug';
-
 import { AuthorizationError } from '../errors';
+import { verifyWebToken as _verifyWebToken } from '../../auth';
 import { asyncErrorHandler } from '../../utils';
-
-const log = debug('fcc:resolvers:directives');
-const { JWT_CERT } = process.env;
-
-function verifyWebToken(ctx) {
-  const token = ctx.headers.authorization;
-  if (!token) {
-    throw new AuthorizationError({
-      message: 'You must supply a JSON Web Token for authorization!'
-    });
-  }
-  let decoded = null;
-  let error = null;
-  try {
-    decoded = jwt.verify(token.replace('Bearer ', ''), JWT_CERT);
-  } catch (err) {
-    error = err;
-  } finally {
-    return { decoded, error, isAuth: !!decoded };
-  }
-}
 
 /*
   Interface: {
@@ -39,7 +12,8 @@ function verifyWebToken(ctx) {
     ) => <Promise> | <Error>
   }
 */
-export const directiveResolvers = {
+
+export const createDirectives = (verifyWebToken = _verifyWebToken) => ({
   isAuthenticatedOnField: (next, source, args, ctx) => {
     const { isAuth } = verifyWebToken(ctx);
     return asyncErrorHandler(next().then(result => (isAuth ? result : null)));
@@ -53,4 +27,4 @@ export const directiveResolvers = {
       message: `You are not authorized, ${error.message}`
     });
   }
-};
+});
