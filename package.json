@@ -27,7 +27,7 @@
     "snyk-test": "snyk test",
     "start": "gulp",
     "test": "jest --runInBand",
-    "test-ci": "node_modules/.bin/jest --runInBand"
+    "test-ci": "JWT_CERT=test node_modules/.bin/jest --runInBand"
   },
   "config": {
     "commitizen": {
