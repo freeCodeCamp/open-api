@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+
 const { JWT_CERT } = process.env;
 
 const NodeEnvironment = require('jest-environment-node');
