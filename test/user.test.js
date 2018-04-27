@@ -6,15 +6,61 @@ const UserModel = require('../dataLayer/model/user.js');
 
 /* eslint-disable no-undef */
 beforeAll(async () => {
-  /* eslint-enable no-undef */
   await mongoose.connect(global.__MONGO_URI__);
 });
 
-/* eslint-disable no-undef */
 afterAll(async () => {
-  /* eslint-enable no-undef */
   await mongoose.disconnect();
 });
+
+// language=GraphQL
+const query = `
+    query { 
+        users {
+            name
+            email
+        }
+    }
+  `;
+
+const rootValue = {};
+
+it(
+  'should return null users and authentication error ' + ' without a token',
+  async () => {
+    const result = await graphql(
+      graphqlSchema,
+      query,
+      rootValue,
+      global.mockedContextWithOutToken
+    );
+
+    expect(result.data.users).toBe(null);
+    expect(result.errors).toHaveLength(1);
+    expect(result.errors[0].message).toBe(
+      'You must supply a JSON Web Token for authorization!'
+    );
+  }
+);
+
+it(
+  'should return null users and authentication error when using an invalid ' +
+    'token',
+  async () => {
+    const result = await graphql(
+      graphqlSchema,
+      query,
+      rootValue,
+      global.mockedContextWithInValidToken
+    );
+
+    expect(result.data.users).toBe(null);
+    expect(result.errors).toHaveLength(1);
+    expect(result.errors[0].message).toBe(
+      'You are not authorized, jwt malformed'
+    );
+  }
+);
 
 it('should return a user after one has been created', async () => {
   const user = new UserModel({
@@ -24,21 +70,15 @@ it('should return a user after one has been created', async () => {
 
   await user.save();
 
-  // language=GraphQL
-  const query = `
-      query {
-          users {
-              name
-              email
-          }
-      }
-    `;
-
-  const rootValue = {};
-  const result = await graphql(graphqlSchema, query, rootValue);
+  const result = await graphql(
+    graphqlSchema,
+    query,
+    rootValue,
+    global.mockedContextWithValidToken
+  );
   const { data } = result;
 
-  /* eslint-disable no-undef */
   expect(data.users[0].name).toBe(user.name);
-  /* eslint-enable no-undef */
 });
+
+/* eslint-enable no-undef */
