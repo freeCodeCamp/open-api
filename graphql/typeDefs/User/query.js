@@ -4,6 +4,6 @@ type Query {
       _id: ID
       name: String
       email: String
-  ): [User]
+  ): [User] @isAuthenticatedOnQuery
 }
 `;
