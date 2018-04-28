@@ -22,7 +22,7 @@
     "format": "prettier --write es5 './**/*.{js,json}' && yarn lint",
     "lint": "eslint ./**/*.js --fix",
     "prepare-production": "snyk protect",
-    "prepublish": "yarn snyk-protect",
+    "prepublishOnly": "yarn snyk-protect",
     "snyk-protect": "snyk protect",
     "snyk-test": "snyk test",
     "start":
