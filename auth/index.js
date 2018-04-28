@@ -4,7 +4,7 @@ import debug from 'debug';
 import { AuthorizationError } from '../graphql/errors';
 
 const log = debug('fcc:auth');
-const { JWT_CERT, NODE_ENV } = process.env;
+const { JWT_CERT } = process.env;
 
 export function verifyWebToken(ctx) {
   log('Verifying token');
