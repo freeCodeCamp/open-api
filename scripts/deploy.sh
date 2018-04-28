@@ -31,4 +31,5 @@ fi
 
 
 echo "Deploying from branch $BRANCH to stage $STAGE"
+yarn prepare-production
 sls deploy --stage $STAGE --region $AWS_REGION
