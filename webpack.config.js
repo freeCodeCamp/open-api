@@ -2,7 +2,7 @@ const path = require('path');
 const slsw = require('serverless-webpack');
 const nodeExternals = require('webpack-node-externals');
 
-const include = './_webpack/include.js';
+const include = './src/_webpack/include.js';
 const entries = {};
 
 Object.keys(slsw.lib.entries).forEach(

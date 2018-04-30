@@ -8,9 +8,9 @@ provider:
   stage: dev
   region: us-east-1
   environment:
-    GRAPHQL_ENDPOINT_URL: ${file(./config/secrets.js):getSecret.GRAPHQL_ENDPOINT_URL}
-    JWT_CERT: ${file(./config/secrets.js):getSecret.JWT_CERT}
-    MONGODB_URL: ${file(./config/secrets.js):getSecret.MONGODB_URL}
+    GRAPHQL_ENDPOINT_URL: ${file(./src/config/secrets.js):getSecret.GRAPHQL_ENDPOINT_URL}
+    JWT_CERT: ${file(./src/config/secrets.js):getSecret.JWT_CERT}
+    MONGODB_URL: ${file(./src/config/secrets.js):getSecret.MONGODB_URL}
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -31,7 +31,7 @@ custom:
 
 functions:
   graphql:
-    handler: handler.graphqlHandler
+    handler: src/handler.graphqlHandler
     events:
     - http:
         path: graphql
@@ -39,7 +39,7 @@ functions:
         cors: true
 
   api:
-    handler: handler.apiHandler
+    handler: src/handler.apiHandler
     events:
     - http:
         path: api
