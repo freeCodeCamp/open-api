@@ -21,11 +21,13 @@ exports.graphqlHandler = async function graphqlHandler(
   context,
   callback
 ) {
+  /* eslint-disable max-len */
   /* Cause Lambda to freeze the process and save state data after
   the callback is called. the effect is that new handler invocations
   will be able to re-use the database connection.
   See https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html
   and https://www.mongodb.com/blog/post/optimizing-aws-lambda-performance-with-mongodb-atlas-and-nodejs */
+  /* eslint-enable max-len */
   context.callbackWaitsForEmptyEventLoop = false;
 
   function callbackFilter(error, output) {
