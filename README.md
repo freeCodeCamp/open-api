@@ -76,7 +76,26 @@ Serverless: GET /api
 Serverless: Offline listening on http://localhost:4000
 ```
 
+### Testing
+
+### Integration tests
+
+Integration tests live in test. We just Jest for integration tests.
+
+#### Unit tests
+
+Unit tests live close to the code they tests, in the same directory and file name, ie: `foo.test.js` tests `foo.js`.
+
+#### Test tokens
+You will have to set authentication headers for particular queries. Generate valid headers, by running `node scripts/generateHeaders.js`. You can use the output in scripts or the graphQL IDE (typically at <http://localhost:4000/api>). This scripts expects the environment variable `JWT_CERT`  to be set, which will be used by the server to validate tokens.
+
+```sh
+▶ node scripts/generateHeader.js
+{"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzLCJuYW1lIjoiQ2hhcmxpZSIsImlhdCI6MTUyNTA0NzkxM30.F-Rqh1Bk6sFBZwAz4cfPyCZrnkl_VJq0jLi_WRcKbMg"}
+```
+
 ### Deployment
+
 Deployment is normally done by CI.
 
 ### Manual Deployment
