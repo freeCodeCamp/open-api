@@ -27,8 +27,8 @@
     "snyk-test": "snyk test",
     "start":
       "cross-env DEBUG=fcc:* nodemon node_modules/serverless/bin/serverless offline start --skipCacheInvalidation",
-    "test": "cross-env JWT_CERT=test jest",
-    "test-ci": "cross-env JWT_CERT=test jest --runInBand"
+    "test": "cross-env JWT_CERT=test jest --verbose",
+    "test-ci": "cross-env JWT_CERT=test jest --runInBand --verbose"
   },
   "config": {
     "commitizen": {
