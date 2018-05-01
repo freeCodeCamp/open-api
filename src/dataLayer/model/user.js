@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 const Schema = mongoose.Schema;
-const SchemaTypes = Schema.Types;
 
 const userSchema = new Schema({
+  accountLinkId: {
+    type: 'string',
+    description: 'A uuid used to link SSO and freeCodeCamp accounts together',
+    required: true
+  },
   email: {
     type: 'string'
   },
@@ -21,9 +24,6 @@ const userSchema = new Schema({
   emailAuthLinkTTL: {
     type: 'date'
   },
-  password: {
-    type: 'string'
-  },
   progressTimestamps: {
     type: 'array',
     default: []
@@ -36,37 +36,15 @@ const userSchema = new Schema({
   isCheater: {
     type: 'boolean',
     description:
-      'Users who are confirmed to have broken academic honesty policy are marked as cheaters',
+      'Users who are confirmed to have broken academic honesty policy are ' +
+      'marked as cheaters',
     default: false
-  },
-  isGithubCool: {
-    type: 'boolean',
-    default: false
-  },
-  githubId: {
-    type: 'string'
   },
   githubURL: {
     type: 'string'
   },
-  githubEmail: {
-    type: 'string'
-  },
-  joinedGithubOn: {
-    type: 'date'
-  },
   website: {
     type: 'string'
-  },
-  githubProfile: {
-    type: 'string'
-  },
-  _csrf: {
-    type: 'string'
-  },
-  isMigrationGrandfathered: {
-    type: 'boolean',
-    default: false
   },
   username: {
     type: 'string'
@@ -80,10 +58,6 @@ const userSchema = new Schema({
     default: ''
   },
   name: {
-    type: 'string',
-    default: ''
-  },
-  gender: {
     type: 'string',
     default: ''
   },
@@ -104,22 +78,6 @@ const userSchema = new Schema({
   twitter: {
     type: 'string'
   },
-  currentStreak: {
-    type: 'number',
-    default: 0
-  },
-  longestStreak: {
-    type: 'number',
-    default: 0
-  },
-  sendMonthlyEmail: {
-    type: 'boolean',
-    default: true
-  },
-  sendNotificationEmail: {
-    type: 'boolean',
-    default: true
-  },
   sendQuincyEmail: {
     type: 'boolean',
     default: true
@@ -128,21 +86,12 @@ const userSchema = new Schema({
     type: 'boolean',
     description:
       'Campers profile does not show challenges/certificates to the public',
-    default: false
+    default: true
   },
   currentChallengeId: {
     type: 'string',
     description: 'The challenge last visited by the user',
     default: ''
-  },
-  currentChallenge: {
-    type: {},
-    description: 'deprecated'
-  },
-  isUniqMigrated: {
-    type: 'boolean',
-    description: 'Campers completedChallenges array is free of duplicates',
-    default: false
   },
   isHonest: {
     type: 'boolean',
@@ -206,27 +155,14 @@ const userSchema = new Schema({
     description: 'Migrate completedChallenges array to challenge map',
     default: false
   },
-  challengeMap: {
-    type: 'object',
-    description: 'A map by ID of all the user completed challenges',
-    default: {}
-  },
   completedChallenges: {
     type: [
       {
         completedDate: 'number',
-        lastUpdated: 'number',
         numOfAttempts: 'number',
         id: 'string',
-        name: 'string',
-        completedWith: 'string',
-        solution: 'string',
-        githubLink: 'string',
-        verified: 'boolean',
-        challengeType: {
-          type: 'number',
-          default: 0
-        }
+        files: 'object',
+        bucket: 'string'
       }
     ],
     default: []
@@ -239,9 +175,6 @@ const userSchema = new Schema({
     type: 'number',
     index: true
   },
-  tshirtVote: {
-    type: 'number'
-  },
   timezone: {
     type: 'string'
   },
@@ -253,16 +186,7 @@ const userSchema = new Schema({
     type: 'string',
     description: 'An IETF language tag',
     default: 'en'
-  },
-  badges: {
-    type: {
-      coreTeam: {
-        type: 'array',
-        default: []
-      }
-    },
-    default: {}
   }
 });
 
-module.exports = mongoose.model('User', userSchema, 'user');
+module.exports = mongoose.model('User', userSchema);
