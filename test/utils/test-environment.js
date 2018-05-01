@@ -1,8 +1,11 @@
 const jwt = require('jsonwebtoken');
+const NodeEnvironment = require('jest-environment-node');
+
+// can be found in ~/src/auth/index.js
+// not 'required' due to jest no knowing how to read es6 modules
+const namespace = 'https://www.freecodecamp.org/';
 
 const { JWT_CERT } = process.env;
-
-const NodeEnvironment = require('jest-environment-node');
 
 class MongoEnvironment extends NodeEnvironment {
   constructor(config) {
@@ -13,7 +16,16 @@ class MongoEnvironment extends NodeEnvironment {
     this.global.__MONGO_URI__ = await global.__MONGOD__.getConnectionString();
     this.global.__MONGO_DB_NAME__ = global.__MONGO_DB_NAME__;
 
-    const token = jwt.sign({ id: 123, name: 'Charlie' }, JWT_CERT);
+    const token = jwt.sign(
+      {
+        id: 123,
+        name: 'Charlie',
+        email: 'charlie@thebear.me',
+        [namespace +
+        'accountLinkId']: 'a-very-unique-string-for-charlie@thebear.me'
+      },
+      JWT_CERT
+    );
     const headers = {
       'Content-Type': 'application/json'
     };

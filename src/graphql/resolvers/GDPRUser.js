@@ -2,7 +2,7 @@ import { createUser, getUser } from '../../dataLayer/mongo/user';
 
 export const userResolvers = {
   Query: {
-    getUser
+    getGDPRUser: getUser
   },
   Mutation: {
     createUser
