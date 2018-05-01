@@ -1,6 +1,7 @@
 import { graphqlLambda } from 'apollo-server-lambda';
 import lambdaPlayground from 'graphql-playground-middleware-lambda';
 import { makeExecutableSchema } from 'graphql-tools';
+import depthLimit from 'graphql-depth-limit';
 import debug from 'debug';
 
 import typeDefs from './graphql/typeDefs';
@@ -51,7 +52,8 @@ exports.graphqlHandler = async function graphqlHandler(
         functionName,
         event,
         context
-      }
+      },
+      validationRules: [depthLimit(10)]
     };
   });
 
