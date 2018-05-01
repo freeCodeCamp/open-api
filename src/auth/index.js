@@ -6,15 +6,18 @@ import { AuthorizationError } from '../graphql/errors';
 const log = debug('fcc:auth');
 const { JWT_CERT } = process.env;
 
+export const namespace = 'https://www.freecodecamp.org/';
+
+export const getTokenFromContext = ctx =>
+  ctx && ctx.headers && ctx.headers.authorization;
+
 export function verifyWebToken(ctx) {
   log('Verifying token');
-  const token =
-    ctx &&
-    ctx.headers &&
-    (ctx.headers.authorization || ctx.headers.Authorization);
+  const token = getTokenFromContext(ctx);
   if (!token) {
     throw new AuthorizationError({
-      message: 'You must supply a JSON Web Token for authorization!'
+      message:
+        'You must supply a JSON Web Token for authorization, are you logged in?'
     });
   }
   let decoded = null;
