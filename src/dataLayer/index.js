@@ -1,8 +1,4 @@
 const mongoose = require('mongoose');
-const bluebird = require('bluebird');
-
-mongoose.Promise = bluebird;
-mongoose.Promise = global.Promise;
 
 // Only reconnect if needed. State is saved and outlives a handler invocation
 let isConnected;
