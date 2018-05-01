@@ -26,18 +26,35 @@ class MongoEnvironment extends NodeEnvironment {
       },
       JWT_CERT
     );
+    const token2 = jwt.sign(
+      {
+        id: 456,
+        name: 'Lola',
+        email: 'lola@cbbc.tv',
+        [namespace + 'accountLinkId']: 'a-very-unique-string-for-lola@cbbc.tv'
+      },
+      JWT_CERT
+    );
     const headers = {
       'Content-Type': 'application/json'
     };
 
     this.global.mockedContextWithOutToken = { headers: headers };
 
-    const headersWithValidToken = {
+    const headersWithValidTokenForCharlie = {
       ...headers,
       Authorization: 'Bearer ' + token
     };
-    this.global.mockedContextWithValidToken = {
-      headers: headersWithValidToken
+    this.global.mockedContextWithValidTokenForCharlie = {
+      headers: headersWithValidTokenForCharlie
+    };
+
+    const headersWithValidTokenForLola = {
+      ...headers,
+      authorization: 'Bearer ' + token2
+    };
+    this.global.mockedContextWithValidTokenForLola = {
+      headers: headersWithValidTokenForLola
     };
 
     const headersWithInValidToken = {

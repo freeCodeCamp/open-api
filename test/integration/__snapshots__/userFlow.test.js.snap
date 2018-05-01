@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createUser should create a user by query: new user 1`] = `
+Object {
+  "email": "charlie@thebear.me",
+  "name": "Charlie",
+}
+`;
+
+exports[`createUser should create a user by query: no errors 1`] = `undefined`;
+
+exports[`createUser should not create a second user for the same context: new user 1`] = `
+Object {
+  "email": "charlie@thebear.me",
+  "name": "Charlie",
+}
+`;
+
+exports[`createUser should not create a second user for the same context: no duplicate users 1`] = `
+Array [
+  Object {
+    "accountLinkId": "a-very-unique-string-for-charlie@thebear.me",
+    "email": "charlie@thebear.me",
+    "name": "Charlie",
+  },
+]
+`;
+
+exports[`createUser should not create a second user for the same context: no errors 1`] = `undefined`;
+
+exports[`createUser should return null and an auth error with an invalid token: no auth error 1`] = `
+Array [
+  [GraphQLError: You are not authorized, jwt malformed],
+]
+`;
+
+exports[`createUser should return null and an auth error with an invalid token: no user 1`] = `null`;
+
+exports[`createUser should return null and an auth error without a token: no user 1`] = `null`;
+
+exports[`createUser should return null and an auth error without a token: not logged in 1`] = `
+Array [
+  [GraphQLError: You must supply a JSON Web Token for authorization, are you logged in?],
+]
+`;
+
+exports[`getUser should return a user after one has been created: no errors 1`] = `undefined`;
+
+exports[`getUser should return a user after one has been created: user found 1`] = `
+Object {
+  "getUser": Object {
+    "email": "charlie@thebear.me",
+    "name": "Charlie",
+  },
+}
+`;
+
+exports[`getUser should return errors for a malformed query: malformed query error 1`] = `
+Array [
+  [GraphQLError: Something went wrong, please check and try again],
+]
+`;
+
+exports[`getUser should return null and an auth error with an invalid token: no auth error 1`] = `
+Array [
+  [GraphQLError: You are not authorized, jwt malformed],
+]
+`;
+
+exports[`getUser should return null and an auth error with an invalid token: no user 1`] = `null`;
+
+exports[`getUser should return null and an auth error without a token: no user 1`] = `null`;
+
+exports[`getUser should return null and an auth error without a token: not logged in 1`] = `
+Array [
+  [GraphQLError: You must supply a JSON Web Token for authorization, are you logged in?],
+]
+`;
+
+exports[`getUser should return null if no user has been found: no user error 1`] = `
+Array [
+  [GraphQLError: Something went wrong, please check and try again],
+]
+`;
+
+exports[`getUser should return null if no user has been found: null user 1`] = `null`;
