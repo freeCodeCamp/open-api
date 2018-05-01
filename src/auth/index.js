@@ -17,7 +17,7 @@ export function verifyWebToken(ctx) {
   let decoded = null;
   let error = null;
   try {
-    decoded = jwt.verify(token.replace('Bearer ', ''), JWT_CERT);      
+    decoded = jwt.verify(token.replace('Bearer ', ''), JWT_CERT);
   } catch (err) {
     error = err;
   } finally {

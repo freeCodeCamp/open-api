@@ -1,9 +1,9 @@
 /* global beforeAll afterAll expect */
-import { graphqlSchema } from '../../handler';
+import { graphqlSchema } from '../../src/handler';
 
 const mongoose = require('mongoose');
 const { graphql } = require('graphql');
-const UserModel = require('../../dataLayer/model/user.js');
+const UserModel = require('../../src/dataLayer/model/user.js');
 
 beforeAll(async function beforeAllTests() {
   await mongoose.connect(global.__MONGO_URI__);
