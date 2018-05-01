@@ -3,7 +3,7 @@ import { createUser, getUser } from './user';
 import { isObject, isEmpty } from 'lodash';
 import mongoose from 'mongoose';
 
-const validContext = global.mockedContextWithValidToken;
+const validContext = global.mockedContextWithValidTokenForCharlie;
 
 beforeAll(async function beforeAllTests() {
   await mongoose.connect(global.__MONGO_URI__);
