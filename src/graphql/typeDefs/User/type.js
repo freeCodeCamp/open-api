@@ -2,71 +2,19 @@ import InputTypes from './input';
 
 export default `
 
-type BaseFile {
-  key: String!
-  head: String
-  tail: String
-  path: String
-  history: [String]!,
-  name: String!
-  ext: String!
-  contents: String!
-  source: String
-}
-
 type CompletedChallenge {
-  id: String
-  files: File
-  bucket: String
-  completedDate: Int
-  numOfAttempts: Int
-}
-
-type File {
-  indexcss: BaseFile
-  indexhtml: BaseFile
-  indexjs: BaseFile
-  indexjsx: BaseFile
-}
-
-type PortfolioItem {
-  description: String
-  image: String
-  title: String
-  url: String
-}
-
-type Progress {
-  calendar: [Int!]!
-  streak: Streak!
-}
-
-type ProgressTimestamp {
-  timestamp: Int!
-  completedChallenge: String
-}
-
-type Streak {
-  longest: Int!
-  current: Int!
+  completedDate: Int!,
+  id: String!,
+  solution: String,
+  githubLink: String
 }
 
 type User {
   email: String!
-  progressTimestamps: [ProgressTimestamp]!,
   isBanned: Boolean
   isCheater: Boolean
-  githubURL: String
-  website: String
-  username: String
-  bio: String
-  about: String
+  username: String!
   name: String
-  location: String
-  picture: String
-  linkedin: String
-  codepen: String
-  twitter: String
   sendQuincyEmail: Boolean
   isLocked: Boolean
   currentChallengeId: String
@@ -82,9 +30,7 @@ type User {
   isApisMicroservicesCert: Boolean
   isInfosecQaCert: Boolean
   completedChallenges: [CompletedChallenge]!
-  portfolio: [PortfolioItem]!
   theme: String
-  languageTag: String
 }
 
 ${InputTypes}
