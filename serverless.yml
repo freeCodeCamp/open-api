@@ -21,6 +21,7 @@ plugins:
   - serverless-webpack
   - serverless-offline-scheduler
   - serverless-offline
+  - serverless-plugin-notification
 
 custom:
   serverless-offline:
@@ -28,6 +29,11 @@ custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
+  notification:
+    webhook:
+      url: https://webhooks.gitter.im/e/957145b550e13c6d3a80
+        Content-Type: application/json
+
 
 functions:
   graphql:
