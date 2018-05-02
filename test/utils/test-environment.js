@@ -18,7 +18,6 @@ class MongoEnvironment extends NodeEnvironment {
 
     const token = jwt.sign(
       {
-        id: 123,
         name: 'Charlie',
         email: 'charlie@thebear.me',
         [namespace + 'accountLinkId']: '76b27a04-f537-4f7d-89a9-b469bf81208b'
@@ -27,7 +26,6 @@ class MongoEnvironment extends NodeEnvironment {
     );
     const token2 = jwt.sign(
       {
-        id: 456,
         name: 'Lola',
         email: 'lola@cbbc.tv',
         [namespace + 'accountLinkId']: '85a937d5-c82c-4aa9-8e0b-9f2b9a7cc36c'
