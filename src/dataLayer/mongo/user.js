@@ -40,13 +40,13 @@ export async function createUser(root, vars, ctx) {
     throw new Error('You must provide a vaild email');
   }
   const newUser = { name, email };
-  const accountLinkId = decoded[namespace + 'accountLinkId'];
+  let accountLinkId = decoded[namespace + 'accountLinkId'];
   if (accountLinkId) {
     newUser.accountLinkId = accountLinkId;
   } else {
-    const linkId = uuid();
-    newUser.accountLinkId = linkId;
-    updateAppMetaData(id, { accountLinkId: linkId });
+    accountLinkId = uuid();
+    newUser.accountLinkId = accountLinkId;
+    updateAppMetaData(id, { accountLinkId });
   }
   const exists = await asyncErrorHandler(
     doesExist(UserModel, { accountLinkId })
