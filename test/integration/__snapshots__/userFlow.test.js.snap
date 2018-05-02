@@ -9,24 +9,24 @@ Object {
 
 exports[`createUser should create a user by query: no errors 1`] = `undefined`;
 
-exports[`createUser should not create a second user for the same context: new user 1`] = `
+exports[`createUser should not create duplicate accounts: new user 1`] = `
 Object {
   "email": "charlie@thebear.me",
   "name": "Charlie",
 }
 `;
 
-exports[`createUser should not create a second user for the same context: no duplicate users 1`] = `
+exports[`createUser should not create duplicate accounts: no duplicate users 1`] = `
 Array [
   Object {
-    "accountLinkId": "a-very-unique-string-for-charlie@thebear.me",
+    "accountLinkId": "76b27a04-f537-4f7d-89a9-b469bf81208b",
     "email": "charlie@thebear.me",
     "name": "Charlie",
   },
 ]
 `;
 
-exports[`createUser should not create a second user for the same context: no errors 1`] = `undefined`;
+exports[`createUser should not create duplicate accounts: no errors 1`] = `undefined`;
 
 exports[`createUser should return null and an auth error with an invalid token: no auth error 1`] = `
 Array [

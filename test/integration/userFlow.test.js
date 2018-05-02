@@ -96,7 +96,7 @@ describe('createUser', () => {
       .catch(done);
   });
 
-  it('should not create a second user for the same context', done => {
+  it('should not create duplicate accounts', done => {
     expect.assertions(4);
 
     graphql(graphqlSchema, createUserQuery, rootValue, validContextCharlie)
