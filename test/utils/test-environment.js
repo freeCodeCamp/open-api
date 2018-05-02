@@ -22,7 +22,7 @@ class MongoEnvironment extends NodeEnvironment {
 
     const headersWithValidToken = {
       ...headers,
-      authorization: 'Bearer ' + token
+      Authorization: 'Bearer ' + token
     };
     this.global.mockedContextWithValidToken = {
       headers: headersWithValidToken
@@ -30,7 +30,7 @@ class MongoEnvironment extends NodeEnvironment {
 
     const headersWithInValidToken = {
       ...headers,
-      authorization: 'Bearer 123'
+      Authorization: 'Bearer 123'
     };
     this.global.mockedContextWithInValidToken = {
       headers: headersWithInValidToken
