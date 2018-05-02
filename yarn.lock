@@ -6266,6 +6266,10 @@ request-promise-core@1.1.1:
   dependencies:
     lodash "^4.13.1"
 
+request-promise-lite@0.9:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/request-promise-lite/-/request-promise-lite-0.9.1.tgz#9e3a383f226424109311b51e8cb4f99a3f235081"
+
 request-promise-native@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/request-promise-native/-/request-promise-native-1.0.5.tgz#5281770f68e0c9719e5163fd3fab482215f4fda5"
@@ -6567,6 +6571,13 @@ serverless-offline@^3.20.0:
     lodash "^4.17.4"
     uuid "^3.2.1"
     velocityjs "^0.9.3"
+
+serverless-plugin-notification@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/serverless-plugin-notification/-/serverless-plugin-notification-1.3.0.tgz#b64afff3618a0bb4251f0884eeeabb2e57e676bb"
+  dependencies:
+    bluebird "^3.5.0"
+    request-promise-lite "0.9"
 
 serverless-webpack@^5.1.1:
   version "5.1.1"
