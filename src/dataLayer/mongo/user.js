@@ -5,7 +5,7 @@ import uuid from 'uuid/v4';
 import { isEmpty, isString } from 'lodash';
 
 import { asyncErrorHandler } from '../../utils';
-import { verifyWebToken, namespace } from '../../auth';
+import { verifyWebToken, namespace, updateAppMetaData } from '../../auth';
 
 const log = debug('fcc:dataLayer:mongo:user');
 
@@ -34,7 +34,7 @@ export function getUser(root, { email }) {
 
 export async function createUser(root, vars, ctx) {
   const { decoded } = verifyWebToken(ctx);
-  const { email, name } = decoded;
+  const { email, name, sub: id } = decoded;
   const isEmail = validator.isEmail(email);
   if (!isEmail) {
     throw new Error('You must provide a vaild email');
@@ -44,8 +44,9 @@ export async function createUser(root, vars, ctx) {
   if (accountLinkId) {
     newUser.accountLinkId = accountLinkId;
   } else {
-    newUser.accountLinkId = uuid();
-    // TODO: appy accountLinkId to app_metadata (auth0)
+    const linkId = uuid();
+    newUser.accountLinkId = linkId;
+    updateAppMetaData(id, { accountLinkId: linkId });
   }
   const exists = await asyncErrorHandler(
     doesExist(UserModel, { accountLinkId })

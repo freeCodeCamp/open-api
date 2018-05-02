@@ -1,8 +1,18 @@
 require('dotenv').config();
 
-const { MONGODB_URL, GRAPHQL_ENDPOINT_URL, JWT_CERT } = process.env;
+const {
+  MONGODB_URL,
+  GRAPHQL_ENDPOINT_URL,
+  JWT_CERT,
+  AUTH0_CLIENT_ID,
+  AUTH0_CLIENT_SECRET,
+  AUTH0_NAMESPACE
+} = process.env;
 
 exports.getSecret = () => ({
+  AUTH0_CLIENT_ID,
+  AUTH0_CLIENT_SECRET,
+  AUTH0_NAMESPACE,
   GRAPHQL_ENDPOINT_URL,
   JWT_CERT,
   MONGODB_URL
