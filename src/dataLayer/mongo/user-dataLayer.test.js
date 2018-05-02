@@ -37,7 +37,7 @@ describe('createUser', () => {
     createUser({}, {}, validContext)
       .then(result => {
         expect(result.accountLinkId).toEqual(
-          'a-very-unique-string-for-charlie@thebear.me'
+          '76b27a04-f537-4f7d-89a9-b469bf81208b'
         );
         return;
       })

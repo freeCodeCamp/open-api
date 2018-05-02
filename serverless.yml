@@ -8,6 +8,9 @@ provider:
   stage: dev
   region: us-east-1
   environment:
+    AUTH0_CLIENT_ID: ${file(./src/config/secrets.js):getSecret.AUTH0_CLIENT_ID}
+    AUTH0_CLIENT_SECRET: ${file(./src/config/secrets.js):getSecret.AUTH0_CLIENT_SECRET}
+    AUTH0_NAMESPACE: ${file(./src/config/secrets.js):getSecret.AUTH0_NAMESPACE}
     GRAPHQL_ENDPOINT_URL: ${file(./src/config/secrets.js):getSecret.GRAPHQL_ENDPOINT_URL}
     JWT_CERT: ${file(./src/config/secrets.js):getSecret.JWT_CERT}
     MONGODB_URL: ${file(./src/config/secrets.js):getSecret.MONGODB_URL}

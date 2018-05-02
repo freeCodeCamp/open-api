@@ -21,8 +21,7 @@ class MongoEnvironment extends NodeEnvironment {
         id: 123,
         name: 'Charlie',
         email: 'charlie@thebear.me',
-        [namespace +
-        'accountLinkId']: 'a-very-unique-string-for-charlie@thebear.me'
+        [namespace + 'accountLinkId']: '76b27a04-f537-4f7d-89a9-b469bf81208b'
       },
       JWT_CERT
     );
@@ -31,7 +30,7 @@ class MongoEnvironment extends NodeEnvironment {
         id: 456,
         name: 'Lola',
         email: 'lola@cbbc.tv',
-        [namespace + 'accountLinkId']: 'a-very-unique-string-for-lola@cbbc.tv'
+        [namespace + 'accountLinkId']: '85a937d5-c82c-4aa9-8e0b-9f2b9a7cc36c'
       },
       JWT_CERT
     );

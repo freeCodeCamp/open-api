@@ -6,10 +6,14 @@ import { AuthorizationError } from '../graphql/errors';
 const log = debug('fcc:auth');
 const { JWT_CERT } = process.env;
 
+export { updateAppMetaData } from './auth0';
+
 export const namespace = 'https://www.freecodecamp.org/';
 
 export const getTokenFromContext = ctx =>
-  ctx && ctx.headers && ctx.headers.authorization;
+  ctx &&
+  ctx.headers &&
+  (ctx.headers.authorization || ctx.headers.Authorization);
 
 export function verifyWebToken(ctx) {
   log('Verifying token');
