@@ -34,7 +34,7 @@ custom:
     includeModules: true
   notification:
     webhook:
-      url: https://webhooks.gitter.im/e/957145b550e13c6d3a80
+      url: ${env:GITTER_WEBHOOK}
 
 functions:
   graphql:
