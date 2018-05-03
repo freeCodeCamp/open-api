@@ -3,7 +3,7 @@ const NodeEnvironment = require('jest-environment-node');
 
 // can be found in ~/src/auth/index.js
 // not 'required' due to jest no knowing how to read es6 modules
-const namespace = 'https://www.freecodecamp.org/';
+const namespace = 'https://auth-ns.freecodecamp.org/';
 
 const { JWT_CERT } = process.env;
 

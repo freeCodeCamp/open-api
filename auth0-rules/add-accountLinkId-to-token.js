@@ -11,10 +11,11 @@
 */
 
 function addAccountLinkId(user, context, callback) {
-  const namespace = 'https://www.freecodecamp.org/accountLinkId';
+  const namespace = 'https://auth-ns.freecodecamp.org/';
   user.app_metadata = user.app_metadata || {};
   user.app_metadata.accountLinkId = user.app_metadata.accountLinkId || uuid();
-  context.idToken[namespace] = user.app_metadata.accountLinkId;
+  context.idToken[namespace + 'accountLinkId'] =
+    user.app_metadata.accountLinkId;
 
   callback(null, user, context);
 }
