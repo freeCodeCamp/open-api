@@ -23,3 +23,11 @@ script:
   - yarn test-ci # Running inband is recommended for CI see https://github.com/facebook/jest/issues/3765
   - 'if [ "${TRAVIS_PULL_REQUEST}" = "true" ] ; then commitlint-travis ; fi'
   - 'if [ "${TRAVIS_PULL_REQUEST}" = "false" ] ; then ./scripts/deploy.sh ; fi'
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/333b428d296e97d5385d
+    on_success: change  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: never     # options: [always|never|change] default: always
