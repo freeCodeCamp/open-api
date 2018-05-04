@@ -8,7 +8,7 @@ const { JWT_CERT } = process.env;
 
 export { updateAppMetaData } from './auth0';
 
-export const namespace = 'https://www.freecodecamp.org/';
+export const namespace = 'https://auth-ns.freecodecamp.org/';
 
 export const getTokenFromContext = ctx =>
   ctx &&
