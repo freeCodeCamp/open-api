@@ -1,33 +1,28 @@
 sudo: false
-
 language: node_js
 node_js:
-  - "lts/*"
+- lts/*
 cache:
   yarn: true
   directories:
-    - "node_modules"
-    - $HOME/.mongodb-binaries # For mongodb-memory-server
-
+  - node_modules
+  - "$HOME/.mongodb-binaries"
 env:
   global:
-    - AWS_REGION=us-east-1
-    - SLS_DEBUG=true
-
+  - AWS_REGION=us-east-1
+  - SLS_DEBUG=true
 before_install:
-  - yarn global add serverless
-  - export PATH=$(yarn global dir)/node_modules/.bin:$PATH
-
+- yarn global add serverless
+- export PATH=$(yarn global dir)/node_modules/.bin:$PATH
 script:
-  - yarn lint
-  - yarn test-ci # Running inband is recommended for CI see https://github.com/facebook/jest/issues/3765
-  - 'if [ "${TRAVIS_PULL_REQUEST}" = "true" ] ; then commitlint-travis ; fi'
-  - 'if [ "${TRAVIS_PULL_REQUEST}" = "false" ] ; then ./scripts/deploy.sh ; fi'
-
+- yarn lint
+- yarn test-ci
+- if [ "${TRAVIS_PULL_REQUEST}" = "true" ] ; then commitlint-travis ; fi
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ] ; then ./scripts/deploy.sh ; fi
 notifications:
   webhooks:
     urls:
-      - ${TRAVIS_GITTER_WEBHOOK}
-    on_success: change  # options: [always|never|change] default: always
-    on_failure: always  # options: [always|never|change] default: always
-    on_start: never     # options: [always|never|change] default: always
+      secure: zLYVljryRBr2aVzx0lt0T3MhiRvc3AHyIVRzpds1IrLHIVias99/PJ0TG51XlDZloNA2eLlj/9BvP9AIH6ycLSSP9JrNstV4f6MDJg4h/ASRDbCLQOuRzDHs35Q/+eqFqw26zfmE6/wJSukykd/9eZcAVDItj3oLyOYjyz5SSeq8vgozKdIHbG/17lKOEVESGvcbo2uxYOYTjAyYRiKNlIt8owB85nylS79isvZ2UwYpkv5Ikcvj/TtQXlwoe8KAUxLUP6pSa+pinL5cLzwvfwcErd9DPpc5/kd/yvU0kV5BvbJUW8MSufaA0JYqEQbyeqIWKyPtfzJU8SqVBMLpnQiNN6tTIb/FVO7cKkyMQVWMW1QvTtvA/l9sWceA3hQ9pqjOOqUKAQ5JvPLHzc+MspGkl1DU3RVk4A462C8JeBGEhJggDh/vDhcN0vUVfO4OMWEqu/vgpTpggeBOev3hZHwNHEOSWH4Bq00OMbKL32FkabPWiRRbPB5DQEeA8NpYhNk4mKpJRye+9LoogmK6wrYrh1ngTwMT10/k/61PyQezEhSTRktyvy/cx3OsckCZmg1ezYsrv/QY85fe0eLZkloVNkzM9QDSFi8+t696EvElFjQQ5PTVs8gzNI9s9VN3bkmmWLWXt91oyU9hcDf7tSjqSyYsSYhF+HxCqhEVUAU=
+    on_success: change
+    on_failure: always
+    on_start: never
