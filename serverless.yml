@@ -24,7 +24,7 @@ plugins:
   - serverless-webpack
   - serverless-offline-scheduler
   - serverless-offline
-  - serverless-plugin-notification
+  - serverless-plugin-notification-ojongerius
 
 custom:
   serverless-offline:
