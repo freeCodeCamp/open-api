@@ -15,6 +15,7 @@ env:
     - SLS_DEBUG=true
 
 before_install:
+  - bork bork
   - yarn global add serverless
   - export PATH=$(yarn global dir)/node_modules/.bin:$PATH
 
