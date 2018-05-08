@@ -37,21 +37,24 @@ custom:
     webhook:
       url: ${env:GITTER_WEBHOOK}
   aws-notifications:
-    - protocol email
-      endpoint ${env:SERVERLESS_EMAIL_NOTIFICATIONS}
-    - protocol https # Announce on Gitter
-      endpoint ${env:GITTER_WEBHOOK}
+      - protocol: email
+        endpoint: ${env:SERVERLESS_EMAIL_NOTIFICATIONS}
+      - protocol: https # Announce on Gitter
+        endpoint: ${env:GITTER_WEBHOOK}
   alerts:
     stages: # Optionally - select which stages to deploy alarms to
       - production
       - staging
     dashboards: true
     topics:
-      ok: ${self:service}-${opt:stage}-alerts-ok
+      ok:
+        topic: ${self:service}-${opt:stage}-alerts-ok
         notifications: ${self:custom.aws-notifications}
-      alarm: ${self:service}-${opt:stage}-alerts-alarm
+      alarm:
+        topic: ${self:service}-${opt:stage}-alerts-alarm
         notifications: ${self:custom.aws-notifications}
-      insufficientData: ${self:service}-${opt:stage}-alerts-insufficientData
+      insufficientData:
+        topic: ${self:service}-${opt:stage}-alerts-insufficientData
         notifications: ${self:custom.aws-notifications}
     alarms:
       - functionThrottles
