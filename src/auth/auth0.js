@@ -6,7 +6,6 @@ import { asyncErrorHandler } from '../utils';
 const log = debug('fcc:auth:auth0');
 
 const { AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_NAMESPACE } = process.env;
-console.log(AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_NAMESPACE);
 /* eslint-disable camelcase */
 function getAPIToken() {
   log('requesting machine token');
