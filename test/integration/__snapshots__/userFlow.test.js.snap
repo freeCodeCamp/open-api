@@ -61,6 +61,12 @@ Array [
 ]
 `;
 
+exports[`getUser should return errors for a query skipping a mandatory field: skipped mandatory field error 1`] = `
+Array [
+  [GraphQLError: Field "getUser" argument "email" of type "String!" is required but not provided.],
+]
+`;
+
 exports[`getUser should return null and an auth error with an invalid token: no auth error 1`] = `
 Array [
   [GraphQLError: You are not authorized, jwt malformed],
