@@ -20,6 +20,7 @@
     "deploy-dev": "serverless --stage=dev deploy",
     "deploy-prod": "serverless --stage=prod deploy",
     "format": "prettier --write es5 './**/*.{js,json}' && yarn lint",
+    "generate-auth-header": "node scripts/generateHeader",
     "lint": "eslint ./**/*.js --fix",
     "prepare-production": "snyk protect",
     "prepublishOnly": "yarn snyk-protect",
