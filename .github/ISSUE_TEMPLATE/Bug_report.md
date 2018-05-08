@@ -12,7 +12,10 @@ A clear and concise description of what the bug is.
 
 Steps to reproduce the behavior. We prefer a GraphQL query or link to a graphqlbin to reproduce.
 
-<img src="./share_playground.png" alt="playground"></a>
+*be mindful that graphbin will include HTTP headers, take care when
+setting authentication tokens.*
+
+<img src="https://raw.githubusercontent.com/freeCodeCamp/open-api/staging/.github/ISSUE_TEMPLATE/share_playground.png" alt="playground"></a>
 
 
 #### Expected behavior ####
