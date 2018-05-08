@@ -50,7 +50,7 @@
     "babel-loader": "^7.1.4",
     "dotenv": "^5.0.1",
     "graphql": "0.13.2",
-    "graphql-playground-middleware-lambda": "^1.5.1",
+    "graphql-playground-middleware-lambda": "1.4.4",
     "graphql-tools": "^2.24.0",
     "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.4",
