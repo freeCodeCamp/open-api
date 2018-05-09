@@ -29,7 +29,9 @@
     "start":
       "cross-env DEBUG=fcc:* nodemon node_modules/serverless/bin/serverless offline start --skipCacheInvalidation --stage dev",
     "test": "cross-env JWT_CERT=test jest --runInBand  --verbose --silent",
-    "test-ci": "cross-env JWT_CERT=test jest --runInBand --verbose"
+    "test-ci": "cross-env JWT_CERT=test jest --runInBand --verbose",
+    "test-update-snapshot":
+      "cross-env JWT_CERT=test jest --runInBand --verbose --updateSnapshot"
   },
   "config": {
     "commitizen": {
