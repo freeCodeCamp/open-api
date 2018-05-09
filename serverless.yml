@@ -39,8 +39,6 @@ custom:
   aws-notifications:
       - protocol: email
         endpoint: ${env:SERVERLESS_EMAIL_NOTIFICATIONS}
-      - protocol: https # Announce on Gitter
-        endpoint: ${env:GITTER_WEBHOOK}
   alerts:
     stages: # Optionally - select which stages to deploy alarms to
       - prod
