@@ -43,8 +43,8 @@ custom:
         endpoint: ${env:GITTER_WEBHOOK}
   alerts:
     stages: # Optionally - select which stages to deploy alarms to
-      - production
-      - staging
+      - prod
+      - stage
     dashboards: true
     topics:
       ok:
