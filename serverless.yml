@@ -45,14 +45,8 @@ custom:
       - stage
     dashboards: true
     topics:
-      ok:
-        topic: ${self:service}-${opt:stage}-alerts-ok
-        notifications: ${self:custom.aws-notifications}
       alarm:
         topic: ${self:service}-${opt:stage}-alerts-alarm
-        notifications: ${self:custom.aws-notifications}
-      insufficientData:
-        topic: ${self:service}-${opt:stage}-alerts-insufficientData
         notifications: ${self:custom.aws-notifications}
     alarms:
       - functionThrottles
