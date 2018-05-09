@@ -45,6 +45,15 @@ const expectedNoUserQuery = `
     }
   `;
 
+const skippedMandatoryFieldQuery = `
+  query {
+    getUser {
+      name
+      email
+    }
+  }
+`;
+
 const malformedQuery = `
     query {
       getUser(email: "Ooops!") {
@@ -165,6 +174,24 @@ describe('getUser', () => {
         const { data, errors } = result;
         expect(data.getUser).toMatchSnapshot('null user');
         expect(errors).toMatchSnapshot('no user error');
+        return;
+      })
+      .then(done)
+      .catch(done);
+  });
+
+  it('should return errors for a query skipping a mandatory field', done => {
+    expect.assertions(1);
+
+    graphql(
+      graphqlSchema,
+      skippedMandatoryFieldQuery,
+      rootValue,
+      validContextCharlie
+    )
+      .then(result => {
+        const { errors } = result;
+        expect(errors).toMatchSnapshot('skipped mandatory field error');
         return;
       })
       .then(done)

@@ -25,6 +25,7 @@ plugins:
   - serverless-offline-scheduler
   - serverless-offline
   - serverless-plugin-notification-ojongerius
+  - serverless-plugin-aws-alerts
 
 custom:
   serverless-offline:
@@ -32,9 +33,26 @@ custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
-  notification:
+  notification: # serverless-plugin-notification-ojongerius
     webhook:
       url: ${env:GITTER_WEBHOOK}
+  aws-notifications:
+      - protocol: email
+        endpoint: ${env:SERVERLESS_EMAIL_NOTIFICATIONS}
+  alerts:
+    stages: # Optionally - select which stages to deploy alarms to
+      - prod
+      - stage
+    dashboards: true
+    topics:
+      alarm:
+        topic: ${self:service}-${opt:stage}-alerts-alarm
+        notifications: ${self:custom.aws-notifications}
+    alarms:
+      - functionThrottles
+      - functionErrors
+      - functionInvocations
+      - functionDuration
 
 functions:
   graphql:
