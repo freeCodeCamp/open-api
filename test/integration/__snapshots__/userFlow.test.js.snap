@@ -57,7 +57,7 @@ Object {
 
 exports[`getUser should return errors for a malformed query: malformed query error 1`] = `
 Array [
-  [GraphQLError: Something went wrong, please check and try again],
+  [GraphQLError: Expected a valid email, got "Ooops!"],
 ]
 `;
 
@@ -85,7 +85,7 @@ Array [
 
 exports[`getUser should return null if no user has been found: no user error 1`] = `
 Array [
-  [GraphQLError: Something went wrong, please check and try again],
+  [GraphQLError: No user found for nowhere@tobe.seen],
 ]
 `;
 
