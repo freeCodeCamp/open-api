@@ -14,7 +14,7 @@ open-api is a graphQL API that will serve multiple purposes:
 
 * serve the frontend of freeCodeCamp
 * an implementation of the freeCodeCamp's open-data policy
-* allow developers to build applications around the freeCodeCamp's eco-system and its open data sets.
+* allow developers to build applications around the freeCodeCamp's eco-system and its open data sets
 
 ## Contributing
 
