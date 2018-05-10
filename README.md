@@ -10,89 +10,15 @@
 
 ## About
 
-freeCodeCamp's open API initiative is an implementation of the freeCodeCamp's open-data policy. This project aims to open access to developers for building applications around the freeCodeCamp's eco-system and its open data sets.
+open-api is a graphQL API that will serve multiple purposes:
 
-## Setting up of a development environment
-### Install prerequisites
+* serve the frontend of freeCodeCamp
+* an implementation of the freeCodeCamp's open-data policy
+* allow developers to build applications around the freeCodeCamp's eco-system and its open data sets.
 
-Install dependencies
+## Contributing
 
-Prerequisites:
-1. [Yarn](https://yarnpkg.com/en/docs/install)
-2. [Node.js](https://nodejs.org/en/)
-3. [Docker](https://docs.docker.com/install/)
-
-```sh
-yarn                      # Install dependencies
-docker pull lambci/lambda # Pull Docker image used to simulate an AWS Lambda container
-```
-
-### Configuring your environment
-
-```sh
-cp sample.env .env
-```
-
-### Running the service
-Start running locally using:
-
-```sh
-yarn start
-
-> open-api@0.0.1 start /Users/ojongerius/repos/fcc-open-api
-> serverless offline start --skipCacheInvalidation
-
-Serverless: Bundling with Webpack...
-Time: 891ms
-Built at: 2018-4-18 11:41:34
-         Asset      Size   Chunks             Chunk Names
-    handler.js  18.2 KiB  handler  [emitted]  handler
-handler.js.map  22.1 KiB  handler  [emitted]  handler
-Entrypoint handler = handler.js handler.js.map
-[./db.js] 593 bytes {handler} [built]
-[./handler.js] 1.98 KiB {handler} [built]
-[./model/user.js] 4.97 KiB {handler} [built]
-[./mongo/user.js] 986 bytes {handler} [built]
-[./resolvers/user.js] 210 bytes {handler} [built]
-[./types/user.js] 388 bytes {handler} [built]
-[apollo-server-lambda] external "apollo-server-lambda" 42 bytes {handler} [built]
-[bluebird] external "bluebird" 42 bytes {handler} [built]
-[fs] external "fs" 42 bytes {handler} [built]
-[graphql-playground-middleware-lambda] external "graphql-playground-middleware-lambda" 42 bytes {handler} [built]
-[graphql-tools] external "graphql-tools" 42 bytes {handler} [built]
-[merge-graphql-schemas] external "merge-graphql-schemas" 42 bytes {handler} [built]
-[moment] external "moment" 42 bytes {handler} [built]
-[mongoose] external "mongoose" 42 bytes {handler} [built]
-[validator] external "validator" 42 bytes {handler} [built]
-Serverless: Watching for changes...
-Serverless: Starting Offline: dev/us-east-1.
-
-Serverless: Routes for graphql:
-Serverless: POST /graphql
-
-Serverless: Routes for api:
-Serverless: GET /api
-
-Serverless: Offline listening on http://localhost:4000
-```
-
-### Testing
-
-### Integration tests
-
-Integration tests live in test. We just Jest for integration tests.
-
-#### Unit tests
-
-Unit tests live close to the code they test, in the same directory and file name, ie: `foo.test.js` tests `foo.js`.
-
-#### Test tokens
-You will have to set authentication headers for particular queries. Generate valid headers, by running `node scripts/generateHeaders.js`. You can use the output in scripts or the graphQL IDE (typically at <http://localhost:4000/api>). This scripts expects the environment variable `JWT_CERT`  to be set, which will be used by the server to validate tokens.
-
-```sh
-▶ node scripts/generateHeader.js
-{"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzLCJuYW1lIjoiQ2hhcmxpZSIsImlhdCI6MTUyNTA0NzkxM30.F-Rqh1Bk6sFBZwAz4cfPyCZrnkl_VJq0jLi_WRcKbMg"}
-```
+We welcome pull requests 🎉! Please follow [these steps](.github/CONTRIBUTING.md) to contribute.
 
 ### Deployment
 

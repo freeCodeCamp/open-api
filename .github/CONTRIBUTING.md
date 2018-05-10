@@ -254,12 +254,21 @@ And then add those to "http headers" in http://localhost:4000/api.
 ## Make Changes
 
 This bit is up to you!
+
+### Add tests
+
+If you have added functionality, please add unit, integration tests or both.
+
+Place unit tests close to the code they test, in the same directory and file name, ie: `foo.test.js` tests `foo.js`.
+
+Place integration tests in test/integration. We just Jest for integration tests.
+
 ### Run The Test Suite
 
 When you're ready to share your code, run the test suite:
 
 ```shell
-$ yarn test
+yarn test
 ```
 
 and ensure all tests pass.
