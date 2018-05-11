@@ -1,5 +1,6 @@
 /* global expect beforeAll afterAll */
-import { createUser, getUser } from './user';
+import { createUser, getUser, deleteUser } from './user';
+import UserModel from '../model/user.js';
 import { isObject, isEmpty } from 'lodash';
 import mongoose from 'mongoose';
 
@@ -106,5 +107,28 @@ describe('getUser', () => {
     ]).then(() => {
       done();
     });
+  });
+});
+
+describe('deleteUser', () => {
+  it('should delete an existing user', async done => {
+    const result = await createUser({}, {}, validContext);
+    const { accountLinkId } = result;
+    const response = await deleteUser({}, { accountLinkId }, validContext);
+    expect(response.statusCode).toEqual(204);
+    expect(response.message).toBeTruthy();
+    const searchResult = await UserModel.findOne({ accountLinkId });
+    expect(searchResult).toBe(null);
+    done();
+  });
+  it('should return with an error message when a user not in db', async done => {
+    const response = await deleteUser(
+      {},
+      { accountLinkId: '0000' },
+      validContext
+    );
+    expect(response.statusCode).toBe(404);
+    expect(response.message).toBeTruthy();
+    done();
   });
 });
