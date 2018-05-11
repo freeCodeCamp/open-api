@@ -65,3 +65,24 @@ export async function createUser(root, vars, ctx) {
     return exists[0];
   }
 }
+
+export async function deleteUser(root, vars, ctx) {
+  const { decoded } = verifyWebToken(ctx);
+  const { accountLinkId } = vars;
+  const loggedInId = decoded[namespace + 'accountLinkId'];
+
+  const exists = await asyncErrorHandler(
+    doesExist(UserModel, { accountLinkId })
+  );
+  if (isEmpty(exists)) {
+    return {
+      statusCode: 404,
+      message: 'There is no account with this accountLinkId'
+    };
+  }
+  await asyncErrorHandler(UserModel.deleteOne({ accountLinkId }));
+  return {
+    statusCode: 204,
+    message: 'Account deleted'
+  };
+}
