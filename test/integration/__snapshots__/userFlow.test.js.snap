@@ -28,6 +28,14 @@ Array [
 
 exports[`createUser should not create duplicate accounts: no errors 1`] = `undefined`;
 
+exports[`createUser should raise an error without email in token: no email 1`] = `
+Array [
+  [GraphQLError: You must provide a valid email],
+]
+`;
+
+exports[`createUser should raise an error without email in token: null 1`] = `null`;
+
 exports[`createUser should return null and an auth error with an invalid token: no auth error 1`] = `
 Array [
   [GraphQLError: You are not authorized, jwt malformed],
