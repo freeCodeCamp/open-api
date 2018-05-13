@@ -35,8 +35,7 @@ export function getUser(root, { email }) {
 export async function createUser(root, vars, ctx) {
   const { decoded } = verifyWebToken(ctx);
   const { email, name, sub: id } = decoded;
-  const isEmail = validator.isEmail(email);
-  if (!isEmail) {
+  if (!isString(email) || !validator.isEmail(email)) {
     throw new Error('You must provide a vaild email');
   }
   const newUser = { name, email };
