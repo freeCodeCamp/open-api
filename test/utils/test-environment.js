@@ -35,6 +35,13 @@ class MongoEnvironment extends NodeEnvironment {
       },
       JWT_CERT
     );
+    const tokenWithoutEmail = jwt.sign(
+      {
+        name: 'Marv',
+        [namespace + 'accountLinkId']: 'f0a102f6-4d2a-481b-9256-438c5756ffb5'
+      },
+      JWT_CERT
+    );
     const headers = {
       'Content-Type': 'application/json'
     };
@@ -55,6 +62,14 @@ class MongoEnvironment extends NodeEnvironment {
     };
     this.global.mockedContextWithValidTokenForLola = {
       headers: headersWithValidTokenForLola
+    };
+
+    const headersWithNoEmailToken = {
+      ...headers,
+      authorization: 'Bearer ' + tokenWithoutEmail
+    };
+    this.global.mockedContextWithNoEmailToken = {
+      headers: headersWithNoEmailToken
     };
 
     const headersWithInValidToken = {

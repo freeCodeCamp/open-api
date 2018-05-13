@@ -16,6 +16,7 @@ afterAll(async function afterAllTests() {
 const contextNoToken = global.mockedContextWithOutToken;
 const invalidContext = global.mockedContextWithInValidToken;
 const validContextCharlie = global.mockedContextWithValidTokenForCharlie;
+const contextNoEmail = global.mockedContextWithNoEmailToken;
 // language=GraphQL
 
 const createUserQuery = `
@@ -99,6 +100,17 @@ describe('createUser', () => {
       .then(({ data, errors }) => {
         expect(data.createUser).toMatchSnapshot('new user');
         expect(errors).toMatchSnapshot('no errors');
+        return;
+      })
+      .then(done)
+      .catch(done);
+  });
+
+  it('should raise an error without email in token', done => {
+    graphql(graphqlSchema, createUserQuery, rootValue, contextNoEmail)
+      .then(({ data, errors }) => {
+        expect(data.createUser).toMatchSnapshot('null');
+        expect(errors).toMatchSnapshot('no email');
         return;
       })
       .then(done)
