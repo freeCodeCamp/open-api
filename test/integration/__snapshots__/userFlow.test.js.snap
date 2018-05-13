@@ -1,19 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`createUser should create a user by query: new user 1`] = `
-Object {
-  "email": "charlie@thebear.me",
-  "name": "Charlie",
-}
+exports[`createUser should create a user by query: new user 1`] = `null`;
+
+exports[`createUser should create a user by query: no errors 1`] = `
+Array [
+  [GraphQLError: The accountLinkId is already in use],
+]
 `;
 
-exports[`createUser should create a user by query: no errors 1`] = `undefined`;
-
-exports[`createUser should not create duplicate accounts: new user 1`] = `
-Object {
-  "email": "charlie@thebear.me",
-  "name": "Charlie",
-}
+exports[`createUser should not create duplicate accounts: duplicate user error 1`] = `
+Array [
+  [GraphQLError: The accountLinkId is already in use],
+]
 `;
 
 exports[`createUser should not create duplicate accounts: no duplicate users 1`] = `
@@ -25,8 +23,6 @@ Array [
   },
 ]
 `;
-
-exports[`createUser should not create duplicate accounts: no errors 1`] = `undefined`;
 
 exports[`createUser should raise an error without email in token: no email 1`] = `
 Array [

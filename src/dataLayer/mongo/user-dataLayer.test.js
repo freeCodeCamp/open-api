@@ -36,15 +36,11 @@ describe('createUser', () => {
 
   it('should return user for accountLinkId if found in db', done => {
     expect.assertions(1);
-    createUser({}, {}, validContext)
-      .then(result => {
-        expect(result.accountLinkId).toEqual(
-          '76b27a04-f537-4f7d-89a9-b469bf81208b'
-        );
-        return;
-      })
-      .then(done)
-      .catch(done);
+    createUser({}, {}, validContext).catch(err => {
+      expect(err).toMatchSnapshot();
+      done();
+      return;
+    });
   });
 });
 
@@ -113,9 +109,9 @@ describe('getUser', () => {
 
 describe('deleteUser', () => {
   it('should delete an existing user', async done => {
-    const result = await createUser({}, {}, validContext);
+    const result = await createUser({}, {}, validContextForLola);
     const { accountLinkId } = result;
-    const response = await deleteUser({}, { accountLinkId }, validContext);
+    const response = await deleteUser({}, { accountLinkId }, validContextForLola);
     expect(response).toBeTruthy();
     expect(response.accountLinkId).toMatch(accountLinkId);
     const searchResult = await UserModel.findOne({ accountLinkId });

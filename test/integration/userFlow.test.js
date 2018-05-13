@@ -117,20 +117,20 @@ describe('createUser', () => {
       .catch(done);
   });
 
-  it('should not create duplicate accounts', done => {
+  it('should not create duplicate accounts', async done => {
     expect.assertions(4);
+    const usersFound = await UserModel.find({
+      email: 'charlie@thebear.me'
+    }).exec();
+    expect(usersFound).toHaveLength(1);
+    expect(
+      usersFound.map(obj => pick(obj, ['name', 'email', 'accountLinkId']))
+    ).toMatchSnapshot('no duplicate users');
 
     graphql(graphqlSchema, createUserQuery, rootValue, validContextCharlie)
       .then(async function({ data, errors }) {
-        expect(data.createUser).toMatchSnapshot('new user');
-        expect(errors).toMatchSnapshot('no errors');
-        const usersFound = await UserModel.find({
-          email: 'charlie@thebear.me'
-        }).exec();
-        expect(usersFound).toHaveLength(1);
-        expect(
-          usersFound.map(obj => pick(obj, ['name', 'email', 'accountLinkId']))
-        ).toMatchSnapshot('no duplicate users');
+        expect(data.createUser).toBeNull();
+        expect(errors).toMatchSnapshot('duplicate user error');
         return;
       })
       .then(done)

@@ -57,12 +57,7 @@ export async function createUser(root, vars, ctx) {
       'Something went wrong creating your account, please try again'
     );
   } else {
-    console.error(
-      'Cannot create account, ' +
-        'the unique id associated with this user is already in use',
-      accountLinkId
-    );
-    return exists[0];
+    throw new Error('The accountLinkId is already in use');
   }
 }
 
