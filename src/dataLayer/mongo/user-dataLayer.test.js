@@ -122,9 +122,9 @@ describe('deleteUser', () => {
     expect(searchResult).toBe(null);
     done();
   });
-  it('should return with an error message when a user not in db', async done => {
+  it('should return with an error for a non existing user', async done => {
     try {
-      const response = await deleteUser(
+      await deleteUser(
         {},
         { accountLinkId: global.idOfLola },
         validContextForLola
@@ -134,13 +134,9 @@ describe('deleteUser', () => {
     }
     done();
   });
-  it('should return with an error when deleting the user not logged in', async done => {
+  it('should refuse deletion of other users', async done => {
     try {
-      const response = await deleteUser(
-        {},
-        { accountLinkId: global.idOfLola },
-        validContext
-      );
+      await deleteUser({}, { accountLinkId: global.idOfLola }, validContext);
     } catch (err) {
       expect(err).toMatchSnapshot();
     }
