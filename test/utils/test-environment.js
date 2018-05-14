@@ -16,11 +16,13 @@ class MongoEnvironment extends NodeEnvironment {
     this.global.__MONGO_URI__ = await global.__MONGOD__.getConnectionString();
     this.global.__MONGO_DB_NAME__ = global.__MONGO_DB_NAME__;
 
+    this.global.idOfCharlie = '76b27a04-f537-4f7d-89a9-b469bf81208b';
+    this.global.idOfLola = '85a937d5-c82c-4aa9-8e0b-9f2b9a7cc36c';
     const token = jwt.sign(
       {
         name: 'Charlie',
         email: 'charlie@thebear.me',
-        [namespace + 'accountLinkId']: '76b27a04-f537-4f7d-89a9-b469bf81208b'
+        [namespace + 'accountLinkId']: this.global.idOfCharlie
       },
       JWT_CERT
     );
@@ -28,7 +30,7 @@ class MongoEnvironment extends NodeEnvironment {
       {
         name: 'Lola',
         email: 'lola@cbbc.tv',
-        [namespace + 'accountLinkId']: '85a937d5-c82c-4aa9-8e0b-9f2b9a7cc36c'
+        [namespace + 'accountLinkId']: this.global.idOfLola
       },
       JWT_CERT
     );

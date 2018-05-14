@@ -5,6 +5,7 @@ import { isObject, isEmpty } from 'lodash';
 import mongoose from 'mongoose';
 
 const validContext = global.mockedContextWithValidTokenForCharlie;
+const validContextForLola = global.mockedContextWithValidTokenForLola;
 
 beforeAll(async function beforeAllTests() {
   await mongoose.connect(global.__MONGO_URI__);
@@ -125,7 +126,19 @@ describe('deleteUser', () => {
     try {
       const response = await deleteUser(
         {},
-        { accountLinkId: '0000' },
+        { accountLinkId: global.idOfLola },
+        validContextForLola
+      );
+    } catch (err) {
+      expect(err).toMatchSnapshot();
+    }
+    done();
+  });
+  it('should return with an error when deleting the user not logged in', async done => {
+    try {
+      const response = await deleteUser(
+        {},
+        { accountLinkId: global.idOfLola },
         validContext
       );
     } catch (err) {

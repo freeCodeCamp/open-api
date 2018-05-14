@@ -72,10 +72,13 @@ export async function deleteUser(root, vars, ctx) {
   const { accountLinkId } = vars;
   const loggedInId = decoded[namespace + 'accountLinkId'];
 
+  if (loggedInId !== accountLinkId) {
+    throw new Error('You can delete only your account');
+  }
   const removedUser = await UserModel.findOneAndRemove({ accountLinkId });
   if (!removedUser) {
     throw new Error(
-      'There is no account with this accountLinkId' + accountLinkId
+      'There is no account with this accountLinkId ' + accountLinkId
     );
   }
   return removedUser;
