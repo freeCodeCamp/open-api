@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deleteUser should return with an error message when a user not in db 1`] = `[Error: There is no account with this accountLinkId0000]`;

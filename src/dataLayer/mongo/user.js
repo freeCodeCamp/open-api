@@ -72,18 +72,11 @@ export async function deleteUser(root, vars, ctx) {
   const { accountLinkId } = vars;
   const loggedInId = decoded[namespace + 'accountLinkId'];
 
-  const exists = await asyncErrorHandler(
-    doesExist(UserModel, { accountLinkId })
-  );
-  if (isEmpty(exists)) {
-    return {
-      statusCode: 404,
-      message: 'There is no account with this accountLinkId'
-    };
+  const removedUser = await UserModel.findOneAndRemove({ accountLinkId });
+  if (!removedUser) {
+    throw new Error(
+      'There is no account with this accountLinkId' + accountLinkId
+    );
   }
-  await asyncErrorHandler(UserModel.deleteOne({ accountLinkId }));
-  return {
-    statusCode: 204,
-    message: 'Account deleted'
-  };
+  return removedUser;
 }
