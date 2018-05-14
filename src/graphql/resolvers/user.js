@@ -1,10 +1,11 @@
-import { createUser, getUser } from '../../dataLayer/mongo/user';
+import { createUser, getUser, deleteUser } from '../../dataLayer/mongo/user';
 
 export const userResolvers = {
   Query: {
     getUser
   },
   Mutation: {
-    createUser
+    createUser,
+    deleteUser
   }
 };

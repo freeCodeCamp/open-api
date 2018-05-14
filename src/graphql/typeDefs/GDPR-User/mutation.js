@@ -2,6 +2,6 @@
 
 export default `
 type Mutation {
-  deleteGDPRUser(accountLinkId: String!): HTTPStatus! @isAuthenticatedOnQuery
+  deleteUser(accountLinkId: String!): GDPRUser @isAuthenticatedOnQuery
 }
 `;

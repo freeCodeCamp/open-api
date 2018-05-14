@@ -6,6 +6,6 @@ export const userResolvers = {
   },
   Mutation: {
     createUser,
-    deleteGDPRUser: deleteUser
+    deleteUser: deleteUser
   }
 };
