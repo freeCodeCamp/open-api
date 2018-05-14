@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`deleteUser should return with an error message when a user not in db 1`] = `[Error: There is no account with this accountLinkId 85a937d5-c82c-4aa9-8e0b-9f2b9a7cc36c]`;
+exports[`deleteUser should refuse deletion of other users 1`] = `[Error: You can delete only your account]`;
 
-exports[`deleteUser should return with an error when deleting the user not logged in 1`] = `[Error: You can delete only your account]`;
+exports[`deleteUser should return with an error for a non existing user 1`] = `[Error: There is no account with this accountLinkId 85a937d5-c82c-4aa9-8e0b-9f2b9a7cc36c]`;
