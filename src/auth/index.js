@@ -18,7 +18,6 @@ export const getTokenFromContext = ctx =>
 
 export function verifyWebToken(ctx) {
   log('Verifying token');
-  console.log('Using cert: ' + JWT_CERT);
   const token = getTokenFromContext(ctx);
   if (!token) {
     throw new AuthorizationError({
