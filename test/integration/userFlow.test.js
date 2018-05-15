@@ -16,6 +16,7 @@ afterAll(async function afterAllTests() {
 const contextNoToken = global.mockedContextWithOutToken;
 const invalidContext = global.mockedContextWithInValidToken;
 const validContextCharlie = global.mockedContextWithValidTokenForCharlie;
+const validContextForLola = global.mockedContextWithValidTokenForLola;
 const contextNoEmail = global.mockedContextWithNoEmailToken;
 // language=GraphQL
 
@@ -96,7 +97,7 @@ describe('createUser', () => {
   it('should create a user by query', done => {
     expect.assertions(2);
 
-    graphql(graphqlSchema, createUserQuery, rootValue, validContextCharlie)
+    graphql(graphqlSchema, createUserQuery, rootValue, validContextForLola)
       .then(({ data, errors }) => {
         expect(data.createUser).toMatchSnapshot('new user');
         expect(errors).toMatchSnapshot('no errors');

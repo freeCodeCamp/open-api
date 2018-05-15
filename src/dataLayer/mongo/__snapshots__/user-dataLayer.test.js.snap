@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`createUser should return user for accountLinkId if found in db 1`] = `[Error: The accountLinkId is already in use]`;
+exports[`createUser should throw if accountLinkId is already in db 1`] = `[Error: The accountLinkId is already in use]`;
 
 exports[`deleteUser should refuse deletion of other users 1`] = `[Error: You can delete only your account]`;
 
