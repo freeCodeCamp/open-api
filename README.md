@@ -20,7 +20,46 @@ open-api is a graphQL API that will serve multiple purposes:
 
 We welcome pull requests 🎉! Please follow [these steps](.github/CONTRIBUTING.md) to contribute.
 
-### Deployment
+## Updating certificates
+
+Tokens are verified using public keys, each tennant will have their own certificate containing the public key.
+
+Certificates are stored either on developer laptops in .env files, or in an environment variable
+JWT_CERT for depoloyments. We use Travis for deployments, and `scripts/deploy.sh`
+will pick either JWT_CERT_STAGE or JWT_CERT_PROD and export it as JWT_CERT. This
+will be picked up and deployed by Serverless.
+
+Certificates are base64 encoded to prevent encoding issues. This works around the
+fact that Travis uses Bash to export environment variables, which causes issues
+with newlines and other characters have a special meaning in shells.
+
+To add a new certificate, download it as a .pem file, and base64 encode it. Use `yarn encode-file` if you want a
+convenient script:
+
+```bash
+▶ yarn encode-file ~/Downloads/freecodecamp-dev.pem
+yarn run v1.6.0
+$ node scripts/base64encode.js /Users/ojongerius/Downloads/freecodecamp-dev.pem
+Original contents:
+
+-----BEGIN CERTIFICATE-----
+MIIDDzCCAfegAwIBAgIJGHAmUeq9oGcAMA0GCSqGSIb3DQEBCwUAMCUxIzAhBgNV
+<SNIP>
+zIPPbMj9c6D7tETg2ZeHEthScPsgoPSHXxYu5N9ImoY/KLjDD5Nk364e0M+ZT8rF
+rbgxgxHNJH92enBwsqrq7CWi2Q==
+-----END CERTIFICATE-----
+
+Base64 encoded (copy this):
+
+LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tDQpNSUlERHpDQ0FmZWdBd0lCQWdJSkdIQW1VZXE5b0djQU1B
+<SNIP>
+MzY0ZTBNK1pUOHJGDQpyYmd4Z3hITkpIOTJlbkJ3c3FycTdDV2kyUT09DQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tDQo=
+✨  Done in 0.23s.
+```
+
+And copy the base64 encoded string to your destination.
+
+## Deployment
 
 Deployment is normally done by CI.
 
@@ -42,7 +81,7 @@ Assert that the stages configured in `serverless.yml` in line with what you'd li
 serverless --stage=YOUR_STAGE_HERE deploy
 ```
 
-### Getting an API key
+## Getting an API key
 
 TBD
 
