@@ -23,6 +23,8 @@ Working on your first Pull Request? You can learn how from this *free* series [H
 | `yarn commit` | interactive tool to help you build a good commit message |
 | `yarn start ` | starts your Lambda locally |
 | `yarn deploy-dev ` | deploy your Lambda to a development environment. Requires an AWS account. |
+| `yarn generate-auth-header` | generate headers for local testing |
+| `yarn encode-file-contents` | base64 encode the contents of a file |
 
 ## Table of Contents
 
