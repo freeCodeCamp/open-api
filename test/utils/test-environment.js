@@ -5,7 +5,8 @@ const NodeEnvironment = require('jest-environment-node');
 // not 'required' due to jest no knowing how to read es6 modules
 const namespace = 'https://auth-ns.freecodecamp.org/';
 
-const { JWT_CERT } = process.env;
+const jwtEncoded = process.env.JWT_CERT;
+const JWT_CERT = Buffer.from(jwtEncoded, 'base64').toString('utf8');
 
 class MongoEnvironment extends NodeEnvironment {
   constructor(config) {
