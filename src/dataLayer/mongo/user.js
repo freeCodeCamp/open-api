@@ -57,7 +57,7 @@ export async function createUser(root, vars, ctx) {
       'Something went wrong creating your account, please try again'
     );
   } else {
-    throw new Error('The accountLinkId is already in use');
+    throw new Error('Account already in use');
   }
 }
 

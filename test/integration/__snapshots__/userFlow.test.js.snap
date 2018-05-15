@@ -11,7 +11,7 @@ exports[`createUser should create a user by query: no errors 1`] = `undefined`;
 
 exports[`createUser should not create duplicate accounts: duplicate user error 1`] = `
 Array [
-  [GraphQLError: The accountLinkId is already in use],
+  [GraphQLError: Account already in use],
 ]
 `;
 
