@@ -4,7 +4,8 @@ import debug from 'debug';
 import { AuthorizationError } from '../graphql/errors';
 
 const log = debug('fcc:auth');
-const { JWT_CERT } = process.env;
+const jwtEncoded = process.env.JWT_CERT;
+const JWT_CERT = Buffer.from(jwtEncoded, 'base64').toString('utf8');
 
 export { updateAppMetaData } from './auth0';
 
