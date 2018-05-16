@@ -14,11 +14,6 @@ provider:
     GRAPHQL_ENDPOINT_URL: ${file(./src/config/secrets.js):getSecret.GRAPHQL_ENDPOINT_URL}
     JWT_CERT: ${file(./src/config/secrets.js):getSecret.JWT_CERT}
     MONGODB_URL: ${file(./src/config/secrets.js):getSecret.MONGODB_URL}
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - s3:*
-      Resource: "*"
 
 plugins:
   - serverless-webpack
