@@ -2,8 +2,8 @@
 
 exports[`createUser should create a user by query: new user 1`] = `
 Object {
-  "email": "lola@cbbc.tv",
-  "name": "Lola",
+  "email": "charlie@thebear.me",
+  "name": "Charlie",
 }
 `;
 
