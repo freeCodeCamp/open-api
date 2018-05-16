@@ -19,6 +19,8 @@ class MongoEnvironment extends NodeEnvironment {
 
     this.global.idOfCharlie = '76b27a04-f537-4f7d-89a9-b469bf81208b';
     this.global.idOfLola = '85a937d5-c82c-4aa9-8e0b-9f2b9a7cc36c';
+    this.global.idOfJane = '85a937d5-c82c-4aa9-89a9-b469bf81208b';
+
     const token = jwt.sign(
       {
         name: 'Charlie',
@@ -32,6 +34,14 @@ class MongoEnvironment extends NodeEnvironment {
         name: 'Lola',
         email: 'lola@cbbc.tv',
         [namespace + 'accountLinkId']: this.global.idOfLola
+      },
+      JWT_CERT
+    );
+    const token3 = jwt.sign(
+      {
+        name: 'Jane',
+        email: 'janedoe@someplace.com',
+        [namespace + 'accountLinkId']: this.global.idOfJane
       },
       JWT_CERT
     );
@@ -62,6 +72,14 @@ class MongoEnvironment extends NodeEnvironment {
     };
     this.global.mockedContextWithValidTokenForLola = {
       headers: headersWithValidTokenForLola
+    };
+
+    const headersWithValidTokenForJane = {
+      ...headers,
+      authorization: 'Bearer ' + token3
+    };
+    this.global.mockedContextWithValidTokenForJane = {
+      headers: headersWithValidTokenForJane
     };
 
     const headersWithNoEmailToken = {

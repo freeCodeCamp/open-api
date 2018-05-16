@@ -97,7 +97,7 @@ describe('createUser', () => {
   it('should create a user by query', done => {
     expect.assertions(2);
 
-    graphql(graphqlSchema, createUserQuery, rootValue, validContextForLola)
+    graphql(graphqlSchema, createUserQuery, rootValue, validContextCharlie)
       .then(({ data, errors }) => {
         expect(data.createUser).toMatchSnapshot('new user');
         expect(errors).toMatchSnapshot('no errors');

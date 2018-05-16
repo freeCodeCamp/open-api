@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 
 const validContextForCharlie = global.mockedContextWithValidTokenForCharlie;
 const validContextForLola = global.mockedContextWithValidTokenForLola;
+const validContextForJane = global.mockedContextWithValidTokenForJane;
 
 beforeAll(async function beforeAllTests() {
   await mongoose.connect(global.__MONGO_URI__);
@@ -18,7 +19,7 @@ afterAll(async function afterAllTests() {
 describe('createUser', () => {
   it('should return a User object', done => {
     expect.assertions(2);
-    createUser({}, {}, validContextForCharlie)
+    createUser({}, {}, validContextForLola)
       .then(result => {
         const { name, email, accountLinkId } = result;
         // there is some weird Promise thing going on with `result`
@@ -36,7 +37,7 @@ describe('createUser', () => {
 
   it('should throw if accountLinkId is already in db', done => {
     expect.assertions(1);
-    createUser({}, {}, validContextForCharlie).catch(err => {
+    createUser({}, {}, validContextForLola).catch(err => {
       expect(err).toMatchSnapshot();
       done();
       return;
@@ -47,8 +48,8 @@ describe('createUser', () => {
 describe('getUser', () => {
   it('should return a User object fo a valid request', done => {
     expect.assertions(2);
-    const email = 'charlie@thebear.me';
-    getUser({}, { email }, validContextForCharlie)
+    const email = 'lola@cbbc.tv';
+    getUser({}, { email }, validContextForLola)
       .then(result => {
         const { name, email, accountLinkId } = result;
         // there is some weird Promise thing going on with `result`
@@ -113,12 +114,12 @@ describe('getUser', () => {
 
 describe('deleteUser', () => {
   it('should delete an existing user', async done => {
-    const result = await createUser({}, {}, validContextForLola);
+    const result = await createUser({}, {}, validContextForJane);
     const { accountLinkId } = result;
     const response = await deleteUser(
       {},
       { accountLinkId },
-      validContextForLola
+      validContextForJane
     );
     expect(response).toBeTruthy();
     expect(response.accountLinkId).toMatch(accountLinkId);
