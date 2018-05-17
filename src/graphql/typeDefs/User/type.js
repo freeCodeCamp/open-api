@@ -10,10 +10,10 @@ type CompletedChallenge {
 }
 
 type User {
+  accountLinkId: String!
   email: String!
-  isBanned: Boolean
   isCheater: Boolean
-  username: String!
+  username: String
   name: String
   sendQuincyEmail: Boolean
   isLocked: Boolean
@@ -29,6 +29,7 @@ type User {
   isJsAlgoDataStructCert: Boolean
   isApisMicroservicesCert: Boolean
   isInfosecQaCert: Boolean
+  isChallengeMapMigrated: Boolean
   completedChallenges: [CompletedChallenge]!
   theme: String
 }
