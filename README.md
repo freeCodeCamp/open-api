@@ -16,6 +16,15 @@ open-api is a graphQL API that will serve multiple purposes:
 * an implementation of the freeCodeCamp's open-data policy
 * allow developers to build applications around the freeCodeCamp's eco-system and its open data sets
 
+## Urls
+
+| environment | url | method |
+ ------- | --- | ---|
+| staging     | https://hxtsoafqna.execute-api.us-east-1.amazonaws.com/api | GET | 
+| staging     | https://hxtsoafqna.execute-api.us-east-1.amazonaws.com/graphq | POST |
+| production | 
+| production | 
+
 ## Contributing
 
 We welcome pull requests 🎉! Please follow [these steps](.github/CONTRIBUTING.md) to contribute.
