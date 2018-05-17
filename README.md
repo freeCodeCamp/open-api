@@ -20,8 +20,8 @@ open-api is a graphQL API that will serve multiple purposes:
 
 | environment | url | method |
  ------- | --- | ---|
-| staging     | https://hxtsoafqna.execute-api.us-east-1.amazonaws.com/api | GET | 
-| staging     | https://hxtsoafqna.execute-api.us-east-1.amazonaws.com/graphq | POST |
+| staging     | https://hxtsoafqna.execute-api.us-east-1.amazonaws.com/stage/api | GET | 
+| staging     | https://hxtsoafqna.execute-api.us-east-1.amazonaws.com/stage/graphql | POST |
 | production | 
 | production | 
 
