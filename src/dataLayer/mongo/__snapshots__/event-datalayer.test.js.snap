@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createCommunityEvent should throw if an attendee does yet exist 1`] = `"Unable to find attendee: {\\"email\\":\\"yeahnah@example.com\\"}"`;
+
+exports[`createCommunityEvent should throw if an imageUrl is not a valid URL 1`] = `"Expected valid URL string, got \\"notaUrl\\""`;
+
+exports[`createCommunityEvent should throw if an isLocked is not a Boolean 1`] = `"Expected a Boolean value, got \\"notaBoolean\\""`;
+
+exports[`deleteCommunityEvent should return with an error for a non existing event 1`] = `[Error: Event not found]`;

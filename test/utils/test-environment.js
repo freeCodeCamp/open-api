@@ -20,6 +20,9 @@ class MongoEnvironment extends NodeEnvironment {
     this.global.idOfCharlie = '76b27a04-f537-4f7d-89a9-b469bf81208b';
     this.global.idOfLola = '85a937d5-c82c-4aa9-8e0b-9f2b9a7cc36c';
     this.global.idOfJane = '85a937d5-c82c-4aa9-89a9-b469bf81208b';
+    this.global.idOfBrian = 'd57c402c-647a-11e8-a678-14109fd1f8cb';
+    this.global.idOfDennis = 'e7189f2e-647a-11e8-9ed9-14109fd1f8cb';
+    this.global.idOfKen = 'e4a850da-647b-11e8-9fb2-14109fd1f8cb';
 
     const token = jwt.sign(
       {
@@ -52,6 +55,33 @@ class MongoEnvironment extends NodeEnvironment {
       },
       JWT_CERT
     );
+    const tokenForBrian = jwt.sign(
+      {
+        name: 'Brian Kernighan',
+        email: 'briankernighan@example.com',
+        [namespace + 'accountLinkId']: this.global.idOfBrian
+      },
+      JWT_CERT
+    );
+
+    const tokenForDennis = jwt.sign(
+      {
+        name: 'Dennis Ritchie',
+        email: 'dennisritchie@example.com',
+        [namespace + 'accountLinkId']: this.global.idOfDennis
+      },
+      JWT_CERT
+    );
+
+    const tokenForKen = jwt.sign(
+      {
+        name: 'Ken Thompson',
+        email: 'kenthompson@example.com',
+        [namespace + 'accountLinkId']: this.global.idOfKen
+      },
+      JWT_CERT
+    );
+
     const headers = {
       'Content-Type': 'application/json'
     };
@@ -96,6 +126,30 @@ class MongoEnvironment extends NodeEnvironment {
     };
     this.global.mockedContextWithInValidToken = {
       headers: headersWithInValidToken
+    };
+
+    const headersWithValidTokenForBrian = {
+      ...headers,
+      authorization: 'Bearer ' + tokenForBrian
+    };
+    this.global.mockedContextWithValidTokenForBrian = {
+      headers: headersWithValidTokenForBrian
+    };
+
+    const headersWithValidTokenForDennis = {
+      ...headers,
+      authorization: 'Bearer ' + tokenForDennis
+    };
+    this.global.mockedContextWithValidTokenForDennis = {
+      headers: headersWithValidTokenForDennis
+    };
+
+    const headersWithValidTokenForKen = {
+      ...headers,
+      authorization: 'Bearer ' + tokenForKen
+    };
+    this.global.mockedContextWithValidTokenForKen = {
+      headers: headersWithValidTokenForKen
     };
 
     await super.setup();

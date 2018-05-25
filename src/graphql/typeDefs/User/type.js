@@ -10,6 +10,7 @@ type CompletedChallenge {
 }
 
 type User {
+  externalId: String
   accountLinkId: String!
   email: String!
   isCheater: Boolean
