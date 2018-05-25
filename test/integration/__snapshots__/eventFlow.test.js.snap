@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createEvent should create an event by query: new event 1`] = `
+Object {
+  "description": "The start of POSIX time",
+  "owner": Object {
+    "email": "briankernighan@example.com",
+    "externalId": null,
+  },
+  "title": "epoch",
+}
+`;
+
+exports[`createEvent should create an event by query: no errors 1`] = `undefined`;
+
+exports[`createEvent should raise an error without email in token: no email 1`] = `
+Array [
+  [GraphQLError: You must provide a valid email],
+]
+`;
+
+exports[`createEvent should raise an error without email in token: null 1`] = `null`;
+
+exports[`createEvent should return null and an auth error with an invalid token: no auth error 1`] = `
+Array [
+  [GraphQLError: You are not authorized, jwt malformed],
+]
+`;
+
+exports[`createEvent should return null and an auth error without a token: not logged in 1`] = `
+Array [
+  [GraphQLError: You must supply a JSON Web Token for authorization, are you logged in?],
+]
+`;
+
+exports[`getEvent should return an event after one has been created: event found 1`] = `
+Object {
+  "description": "The start of POSIX time",
+  "owner": Object {
+    "email": "briankernighan@example.com",
+  },
+  "title": "epoch",
+}
+`;
+
+exports[`getEvent should return an event after one has been created: no errors 1`] = `undefined`;
+
+exports[`getEvent should return errors for a malformed query: malformed query error 1`] = `
+Array [
+  [GraphQLError: Expected a valid externalId or title],
+]
+`;
+
+exports[`getEvent should return errors for a query skipping a mandatory field: skipped mandatory field error 1`] = `
+Array [
+  [GraphQLError: Expected an event ID or title],
+]
+`;
+
+exports[`getEvent should return null if no event has been found: no event error 1`] = `undefined`;
+
+exports[`getEvent should return null if no event has been found: null event 1`] = `null`;

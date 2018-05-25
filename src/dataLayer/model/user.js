@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
+  externalId: {
+    type: 'string',
+    description: 'A UUID that is communicated externally'
+  },
   accountLinkId: {
     type: 'string',
     description: 'A uuid used to link SSO and freeCodeCamp accounts together',
@@ -111,7 +115,16 @@ const userSchema = new Schema({
   theme: {
     type: 'string',
     default: 'default'
-  }
+  },
+  // Many to many relationship, see
+  // http://mongoosejs.com/docs/populate.html
+  events: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Event',
+      description: 'Event'
+    }
+  ]
 });
 
 module.exports = mongoose.model('User', userSchema, 'user');

@@ -1,7 +1,7 @@
 export default `
 input CompletedChallengeInput {
   completedDate: Int!,
-  id: String!,
+  externalId: String!,
   solution: String,
   githubLink: String
 }
