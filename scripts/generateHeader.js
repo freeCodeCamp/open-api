@@ -1,7 +1,8 @@
 const secrets = require('../src/config/secrets.js');
 const jwt = require('jsonwebtoken');
 
-const JWT_CERT = secrets.getSecret().JWT_CERT;
+const jwtEncoded = process.env.JWT_CERT;
+const JWT_CERT = Buffer.from(jwtEncoded, 'base64').toString('utf8');
 
 const token = jwt.sign(
   {
