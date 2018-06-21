@@ -2,7 +2,7 @@
 
 [![Gitter](https://badges.gitter.im/FreeCodeCamp/open-api.svg)](https://gitter.im/FreeCodeCamp/open-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Build Status](https://travis-ci.org/freeCodeCamp/open-api.svg?branch=staging)](https://travis-ci.org/freeCodeCamp/open-api)
-[![Known Vulnerabilities](https://snyk.io/test/github/freecodecamp/open-api/badge.svg?targetFile=package.json)](https://snyk.io/test/github/freecodecamp/open-api?targetFile=package.json)
+[![Known Vulnerabilities](https://snyk.io/test/github/freecodecamp/open-api/badge.svg?targetFile=package.json)](https://snyk.io/test/github/freecodecamp/open-api?targetFile=package.json) [![Greenkeeper badge](https://badges.greenkeeper.io/freeCodeCamp/open-api.svg)](https://greenkeeper.io/)
 
 # open-api
 
