@@ -34,7 +34,7 @@ We welcome pull requests 🎉! Please follow [these steps](.github/CONTRIBUTING.
 Tokens are verified using public keys, each tennant will have their own certificate containing the public key.
 
 Certificates are stored either on developer laptops in .env files, or in an environment variable
-JWT_CERT for depoloyments. We use Travis for deployments, and `scripts/deploy.sh`
+JWT_CERT for deployments. We use Travis for deployments, and `scripts/deploy.sh`
 will pick either JWT_CERT_STAGE or JWT_CERT_PROD and export it as JWT_CERT. This
 will be picked up and deployed by Serverless.
 
