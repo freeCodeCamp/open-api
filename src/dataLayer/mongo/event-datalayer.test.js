@@ -200,36 +200,30 @@ describe('getCommunityEvent', () => {
     );
   });
 
+  // function validateError(err) {
+  //   expect(err).toBeInstanceOf(TypeError);
+  //   expect(err.message).toContain('Expected a valid externalId or title');
+  // }
+
+  function getCommunityEventPromiseForTestCase(testCase) {
+    return getCommunityEvent(
+      {},
+      { externalId: testCase },
+      validContextForBrian
+    ).catch(err => {
+      expect(err).toBeInstanceOf(TypeError);
+      expect(err.message).toContain('Expected a valid externalId or title');
+    });
+  }
+
   // TODO: DRY please
   it('should throw if the externalId is not valid', done => {
     expect.assertions(8);
     Promise.all([
-      getCommunityEvent({}, { externalId: 1 }, validContextForBrian).catch(
-        err => {
-          expect(err).toBeInstanceOf(TypeError);
-          expect(err.message).toContain('Expected a valid externalId or title');
-        }
-      ),
-      getCommunityEvent({}, { externalId: 'abc' }, validContextForBrian).catch(
-        err => {
-          expect(err).toBeInstanceOf(TypeError);
-          expect(err.message).toContain('Expected a valid externalId or title');
-        }
-      ),
-      getCommunityEvent(
-        {},
-        { externalId: ['yeah nah'] },
-        validContextForBrian
-      ).catch(err => {
-        expect(err).toBeInstanceOf(TypeError);
-        expect(err.message).toContain('Expected a valid externalId or title');
-      }),
-      getCommunityEvent({}, { externalId: false }, validContextForBrian).catch(
-        err => {
-          expect(err).toBeInstanceOf(TypeError);
-          expect(err.message).toContain('Expected a valid externalId or title');
-        }
-      )
+      getCommunityEventPromiseForTestCase(1),
+      getCommunityEventPromiseForTestCase('abc'),
+      getCommunityEventPromiseForTestCase(['yeah nah']),
+      getCommunityEventPromiseForTestCase(false)
     ]).then(() => {
       done();
     });
