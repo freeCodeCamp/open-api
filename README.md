@@ -31,7 +31,7 @@ We welcome pull requests 🎉! Please follow [these steps](.github/CONTRIBUTING.
 
 ## Updating certificates
 
-Tokens are verified using public keys, each tennant will have their own certificate containing the public key.
+Tokens are verified using public keys, each tenant will have their own certificate containing the public key.
 
 Certificates are stored either on developer laptops in .env files, or in an environment variable
 JWT_CERT for deployments. We use Travis for deployments, and `scripts/deploy.sh`
