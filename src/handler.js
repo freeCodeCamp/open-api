@@ -66,6 +66,18 @@ exports.graphqlHandler = async function graphqlHandler(
     process.exit();
     /* eslint-enable no-process-exit */
   }
+
+  try {
+    JSON.parse(event.body);
+  } catch (err) {
+    const msg = 'Invalid JSON';
+    log(msg, err);
+    return callback(null, {
+      body: msg,
+      statusCode: 422
+    });
+  }
+
   return handler(event, context, callbackFilter);
 };
 
